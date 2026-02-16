@@ -134,3 +134,19 @@ body {
     padding: 10px 0;
     cursor: pointer;
 }
+
+
+.welcome {
+    width:100%;
+    justify-content: center;
+    padding: 40px;
+}
+
+.welcome-item {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centre verticalement */
+    min-height: 100vh; /* Hauteur de l'écran */
+    font-size: 200px;
+    
+}

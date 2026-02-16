@@ -10,17 +10,17 @@ const projects = {
     femmesdecinema: {
         title: "femmes de cinéma",
         year: "2026",
-        description: "Description de angel candles..."
+        description: "Description"
     },
     projet3: {
         title: "projet 3",
         year: "2025",
-        description: "Description de worldisaster..."
+        description: "Description"
     },
     projet4: {
         title: "projet 4",
         year: "2025",
-        description: "Description de data synesthesia..."
+        description: "Description"
     }
     // Ajoutez vos autres projets ici
 };
