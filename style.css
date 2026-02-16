@@ -1,0 +1,108 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'MaTypo';
+    src: url('fonts/Nudles-Hairline.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Si vous avez plusieurs versions (bold, italic...) */
+@font-face {
+    font-family: 'MaTypo';
+    src: url('Nudles-Fat.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* Navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    z-index: 1000;
+}
+
+.nav-left .logo {
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
+    color: #000;
+}
+
+.nav-right {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-right a {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    transition: opacity 0.3s;
+}
+
+.nav-right a:hover {
+    opacity: 0.6;
+}
+
+/* Ajustez le container pour ne pas être caché sous la nav */
+.container {
+    margin-top: 80px;
+    /* Espace pour la navbar fixe */
+}
+
+body {
+    font-family: 'MaTypo', Arial, sans-serif;
+    background: white;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.left-panel {
+    width: 30%;
+    padding: 40px;
+}
+
+.project-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.project-item:hover {
+    color: #666;
+}
+
+.project-name {
+    font-weight: normal;
+}
+
+.project-date {
+    color: #666;
+    font-style: italic;
+}
+
+.right-panel {
+    width: 100%;
+    padding-left: 150px;
+    padding-right: 40px;
+    padding-top: 40px;
+}
+
+#project-description {
+    line-height: 1.6;
+}
