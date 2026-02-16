@@ -11,12 +11,16 @@
     font-style: normal;
 }
 
-/* Si vous avez plusieurs versions (bold, italic...) */
 @font-face {
     font-family: 'MaTypo';
-    src: url('Nudles-Fat.woff2') format('woff2');
+    src: url('fonts/Nudles-Fat.woff2') format('woff2');
     font-weight: bold;
     font-style: normal;
+}
+
+body {
+    font-family: 'MaTypo', Arial, sans-serif;
+    background: white;
 }
 
 /* Navigation */
@@ -33,10 +37,12 @@
 }
 
 .nav-left .logo {
-    font-weight: bold;
-    font-size: 18px;
-    text-decoration: none;
-    color: #000;
+    display: inline-block;
+}
+
+.nav-left .logo img {
+    height: 30px; /* Ajustez la taille selon vos besoins */
+    width: auto;
 }
 
 .nav-right {
@@ -55,24 +61,15 @@
     opacity: 0.6;
 }
 
-/* Ajustez le container pour ne pas être caché sous la nav */
-.container {
-    margin-top: 80px;
-    /* Espace pour la navbar fixe */
-}
-
-body {
-    font-family: 'MaTypo', Arial, sans-serif;
-    background: white;
-}
-
+/* Container - UNE SEULE DÉCLARATION */
 .container {
     display: flex;
     min-height: 100vh;
+    margin-top: 80px; /* Tout regroupé ici */
 }
 
 .left-panel {
-    width: 30%;
+    width: 40%;
     padding: 40px;
 }
 
@@ -87,22 +84,53 @@ body {
     color: #666;
 }
 
-.project-name {
-    font-weight: normal;
-}
-
-.project-date {
-    color: #666;
-    font-style: italic;
-}
-
 .right-panel {
-    width: 100%;
-    padding-left: 150px;
-    padding-right: 40px;
-    padding-top: 40px;
+    width: 60%;
+    padding: 40px;
 }
 
+/* Styles pour le contenu des projets */
 #project-description {
     line-height: 1.6;
+}
+
+.project-title {
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.project-year {
+    color: #666;
+    font-style: italic;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.project-desc {
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.project-intention {
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+.project-image {
+    width: 25%; /* Changé de 10% à 100% */
+    height: auto;
+    margin-top: 20px;
+}
+
+
+.contacts {
+    width: 40%;
+    padding: 40px;
+}
+
+.contact-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    cursor: pointer;
 }

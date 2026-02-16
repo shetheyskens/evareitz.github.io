@@ -3,7 +3,9 @@ const projects = {
     waronscreen: {
         title: "war on screen",
         year: "2026",
-        description: "this project reimagines the spray, a quick, unpredictable street art gesture, in digital and augmented reality.particles move and transform, creating an interactive space where sound and motion collide."
+        images: "images/img1.png", // Chemin vers l'image
+        description: "L’équipe WOS vous invite à réfléchir à la nouvelle identité visuelle du festival à travers la création de l’affiche de la 14e édition. Elle sera exposée lors de l’édition 2026.",
+        intention: "L’affiche interroge le pouvoir de l’image comme acte de mémoire, capable d’immortaliser des vies menacées de disparition. La joie et l’innocence des enfants, figées dans la lumière de la projection, subsistent face à un effacement progressif suggéré par les particules."
     },
     femmesdecinema: {
         title: "femmes de cinéma",
@@ -27,11 +29,13 @@ const projects = {
 function showProject(projectId) {
     const project = projects[projectId];
     const descriptionDiv = document.getElementById('project-description');
-
+    
     descriptionDiv.innerHTML = `
-        <h2>${project.title}</h2>
-        <p style="color: #666; font-style: italic; margin: 10px 0;">${project.year}</p>
-        <p>${project.description}</p>
+        <h2 class="project-title">${project.title}</h2>
+        <p class="project-year">${project.year}</p>
+        <p class="project-desc">${project.description}</p>
+        ${project.intention ? `<div class="project-intention">${project.intention}</div>` : ''}
+        ${project.images ? `<img src="${project.images}" alt="${project.title}" class="project-image">` : ''}
     `;
 }
 
