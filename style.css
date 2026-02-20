@@ -23,6 +23,8 @@ body {
     background: white;
 }
 
+
+
 /* Navigation */
 .navbar {
     position: fixed;
@@ -41,7 +43,8 @@ body {
 }
 
 .nav-left .logo img {
-    height: 30px; /* Ajustez la taille selon vos besoins */
+    height: 30px;
+    /* Ajustez la taille selon vos besoins */
     width: auto;
 }
 
@@ -61,11 +64,14 @@ body {
     opacity: 0.6;
 }
 
+
+
 /* Container - UNE SEULE DÉCLARATION */
 .container {
     display: flex;
     min-height: 100vh;
-    margin-top: 80px; /* Tout regroupé ici */
+    margin-top: 80px;
+    /* Tout regroupé ici */
 }
 
 .left-panel {
@@ -90,8 +96,9 @@ body {
 }
 
 /* Styles pour le contenu des projets */
-#project-description {
-    line-height: 1.6;
+
+.projects-title-date {
+    margin-bottom: 25px;
 }
 
 .project-title {
@@ -99,45 +106,62 @@ body {
     font-size: 24px;
 }
 
-.project-year {
-    color: #666;
-    font-style: italic;
-    margin-bottom: 20px;
-    display: block;
+
+.projects-details {
+    margin-bottom: 50px;
 }
 
-.project-desc {
-    margin-bottom: 25px;
-    line-height: 1.6;
+.projects-details p {
+    margin: 15px 0;
 }
 
-.project-intention {
-    margin-bottom: 30px;
-    padding: 20px;
+
+.projects-softwaresdiv {
+    margin: 30px 0;
+    /* Changé de 0px à 30px pour voir la différence */
 }
+
+.projects-softwaresdiv p {
+    margin: 0;
+    /* Style pour le <p> à l'intérieur */
+}
+
 
 .project-image {
-    width: 25%; /* Changé de 10% à 100% */
+    width: 25%;
+    /* Changé de 10% à 100% */
     height: auto;
     margin-top: 20px;
 }
 
 
+/* -- PAGE CONTACT.html -- */
 .contacts {
-    width: 40%;
+    align-items: center;
+    width: 50%;
     padding: 40px;
 }
 
 .contact-item {
+    align-items: center;
+    justify-content: center;
     display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
+    /*justify-content: space-between;*/
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 40px;
+    padding-right: 40px;
     cursor: pointer;
+    font-size: 50px;
+    border: solid;
+    border-width: 1px;
+    border-radius: 500px;
+    margin-bottom: 10px;
 }
 
-
+/* -- PAGE INDEX.html -- */
 .welcome {
-    width:100%;
+    width: 100%;
     justify-content: center;
     padding: 40px;
 }
@@ -145,8 +169,53 @@ body {
 .welcome-item {
     display: flex;
     justify-content: center;
-    align-items: center; /* Centre verticalement */
-    min-height: 100vh; /* Hauteur de l'écran */
+    align-items: center;
+    /* Centre verticalement */
+    min-height: 100vh;
+    /* Hauteur de l'écran */
     font-size: 200px;
-    
 }
+
+.welcome-item a {
+    text-decoration: none;
+    color: #000;
+}
+
+.welcome-item a:hover {
+    opacity: 0.6;
+}
+
+
+/* -- PAGE ABOUT-ME.html -- */
+.about-me {
+    padding: 100px;
+}
+
+.labeur {
+    font-size: 25px;
+    line-height: 1.6;
+}
+
+.button {
+    text-decoration: none;
+    position: fixed;
+    bottom: 20px;      /* Distance du haut */
+    right: 20px;    /* Distance de la droite */
+    z-index: 1000;  /* Au-dessus des autres éléments */
+    border: solid;
+    border-width: 1px;  
+    padding-bottom: 8px;
+    padding-top: 8px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color :#c9c9c9;
+    }
+
+.reset-button {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 30px;
+    color: #c9c9c9; /* Ajouter la couleur ici aussi */
+
+}
+

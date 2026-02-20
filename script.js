@@ -10,7 +10,8 @@ const projects = {
     femmesdecinema: {
         title: "femmes de cinéma",
         year: "2026",
-        description: "Description"
+        description: "Concevoir la mise en page d’un hors-série des Cahiers du Cinéma dédié aux portraits de réalisatrices, en traduisant graphiquement la singularité de chaque parcours.",
+        intention: "Projet éditorial explorant la déconstruction des codes patriarcaux du cinéma à travers une mise en page expérimentale, utilisant l’asymétrie, la fragmentation et l’interaction. La forme graphique sert de langage pour questionner, renouveler et reconfigurer les récits et les normes visuelles."
     },
     projet3: {
         title: "projet 3",
@@ -38,6 +39,8 @@ function showProject(projectId) {
         ${project.images ? `<img src="${project.images}" alt="${project.title}" class="project-image">` : ''}
     `;
 }
+
+
 
 // p5.js code pour le dessin
 function setup() {
