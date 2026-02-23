@@ -119,7 +119,7 @@ function setup() {
     let canvas = createCanvas(windowWidth, windowHeight);
     canvas.position(0, 0);
     canvas.style('z-index', '-1');
-    strokeWeight(1);
+    strokeWeight(0.5);
     stroke(0);
 }
 
@@ -132,3 +132,70 @@ function keyPressed() {
         background(255);
     }
 }
+
+
+
+
+// Ouvrir la pop-up contact
+function openContactPopup() {
+    document.getElementById('contact-popup').classList.add('active');
+}
+
+// Fermer la pop-up contact
+function closeContactPopup() {
+    document.getElementById('contact-popup').classList.remove('active');
+}
+
+// Ouvrir la pop-up about
+function openAboutPopup() {
+    document.getElementById('about-popup').classList.add('active');
+}
+
+// Fermer la pop-up about
+function closeAboutPopup() {
+    document.getElementById('about-popup').classList.remove('active');
+}
+
+// Fermer avec Escape
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeContactPopup();
+        closeAboutPopup();
+    }
+});
+
+// Drag & drop pour TOUTES les fenêtres
+document.addEventListener('DOMContentLoaded', () => {
+    const windowContainers = document.querySelectorAll('.window-container-contact, .window-container-about');
+    
+    windowContainers.forEach(windowContainer => {
+        const windowHeader = windowContainer.querySelector('.window-header');
+        let isDragging = false;
+        let initialX, initialY;
+
+        windowHeader?.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            initialX = e.clientX - (windowContainer.offsetLeft || 0);
+            initialY = e.clientY - (windowContainer.offsetTop || 0);
+            
+            // Empêcher la sélection de texte pendant le drag
+            e.preventDefault();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                e.preventDefault();
+                const currentX = e.clientX - initialX;
+                const currentY = e.clientY - initialY;
+                
+                windowContainer.style.position = 'absolute';
+                windowContainer.style.left = currentX + 'px';
+                windowContainer.style.top = currentY + 'px';
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+    });
+});
