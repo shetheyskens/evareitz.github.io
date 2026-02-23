@@ -25,6 +25,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'inter';
+    src: url('fonts/Inter_18pt-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     font-family: 'MaTypo', Arial, sans-serif;
     background: white;
@@ -272,9 +279,11 @@ hr {
     min-height: 100vh;
     padding: 100px 40px;
         /* Scroll horizontal */
-    overflow-x: auto;
+    overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap; /* Empêche les retours à la ligne */
+    left: 10%;
+    right: 10%;
     }
 
 .projects-preview {
@@ -283,7 +292,7 @@ hr {
     height: auto;
     margin-top: 20px;
     opacity: 0.4;
-    margin-left: -40px;
+    margin-left: -110px;
     filter: grayscale(1);
     flex-shrink: 0;
     cursor: pointer;
@@ -297,28 +306,34 @@ hr {
     opacity: 1;
     margin-left: -40px;
     filter: grayscale(0);
+    z-index: 10000;
     }
 
 
-/* Style de la scrollbar (optionnel) */
+
+/* Style de la scrollbar */
 .carousel::-webkit-scrollbar {
-    height: 8px;
+    height: 10px; /* Hauteur de la scrollbar */
 }
 
 .carousel::-webkit-scrollbar-track {
-    background: #b71313;
+    background: #f1f1f1; /* Fond de la piste */
 }
 
 .carousel::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 4px;
+    background: #000; /* Couleur de la barre */
+    border-radius: 5px;
 }
 
 .carousel::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: #555; /* Au survol */
 }
 
-
+/* Pour Firefox */
+.carousel {
+    scrollbar-width: thin; /* 'auto', 'thin', ou 'none' */
+    scrollbar-color: #000 #f1f1f1; /* barre piste */
+}
 
 
 /* Texte - bas à gauche */
@@ -349,7 +364,7 @@ hr {
 .info-text p {
     margin: 5px 0;
     font-size: 14px;
-    font-family: 'exposure', Arial, sans-serif;
+    font-family: 'inter', Arial, sans-serif;
 }
 
 
@@ -386,7 +401,7 @@ hr {
 .lightbox {
     display: none;
     position: fixed;
-    z-index: 3000;
+    z-index: 10001;
     top: 0;
     left: 0;
     width: 100%;
@@ -403,32 +418,34 @@ hr {
 }
 
 #lightbox-image {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 70%;
+    max-height: 70%;
     object-fit: contain;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); /* Ombre pour détacher l'image */
+    /*box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); /* Ombre pour détacher l'image */
 }
 
 .lightbox-close {
     position: absolute;
+    text-decoration: underline;
     top: 30px;
     right: 50px;
-    font-size: 50px;
+    font-size: 25px;
     color: #000; /* Changé en noir */
     cursor: pointer;
     z-index: 3001;
 }
 
 .lightbox-close:hover {
-    opacity: 0.7;
+    opacity: 0.5;
 }
 
 .lightbox-prev,
 .lightbox-next {
     position: absolute;
+    text-decoration: underline;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 60px;
+    font-size: 25px;
     color: #000; /* Changé en noir */
     cursor: pointer;
     padding: 20px;
@@ -437,7 +454,7 @@ hr {
 
 .lightbox-prev:hover,
 .lightbox-next:hover {
-    opacity: 0.7;
+    opacity: 0.5;
 }
 
 .lightbox-prev {
