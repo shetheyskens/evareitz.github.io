@@ -1,9 +1,28 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/*■■■ RESPONSIVE FONTS ■■■■■■■■■■■■■■■■■■■■■■■■■■■■*/
+html {
+    font-size: 16px;
+    /* Fallback pour anciens navigateurs */
 }
 
+@media screen and (min-width: 25em) {
+
+    /* 400px */
+    html {
+        font-size: calc(16px + (20 - 16) * ((100vw - 400px) / (1200 - 400)));
+    }
+}
+
+@media screen and (min-width: 75em) {
+
+    /* 1200px */
+    html {
+        font-size: 20px;
+    }
+}
+
+
+
+/*■■■ FONTS ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■*/
 @font-face {
     font-family: 'MaTypo';
     src: url('fonts/Nudles-Hairline.woff2') format('woff2');
@@ -35,11 +54,13 @@
 body {
     font-family: 'MaTypo', Arial, sans-serif;
     background: white;
+    font-size: 1rem;
+    /* Fluide automatiquement */
 }
 
 
 
-/* Navigation */
+/*■■■ NAVIGATION ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■*/
 .navbar {
     position: fixed;
     top: 0;
@@ -57,8 +78,8 @@ body {
 }
 
 .nav-left .logo img {
-    height: 30px;
-    /* Ajustez la taille selon vos besoins */
+    height: 1.875rem;
+    /* 30px → fluide (30-37.5px) */
     width: auto;
 }
 
@@ -70,7 +91,8 @@ body {
 .nav-right a {
     text-decoration: underline;
     color: #000;
-    font-size: 14px;
+    font-size: 0.875rem;
+    /* 14px → fluide (14-17.5px) */
     transition: opacity 0.3s;
 }
 
@@ -80,94 +102,12 @@ body {
 
 
 
-/* Container - UNE SEULE DÉCLARATION */
-.container {
-    display: flex;
-    min-height: 100vh;
-    margin-top: 80px;
-    /* Tout regroupé ici */
-}
-
-.left-panel {
-    width: 40%;
-    padding: 40px;
-}
-
-.project-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-    cursor: pointer;
-}
-
-.project-item:hover {
-    color: #666;
-}
-
-.right-panel {
-    width: 60%;
-    padding: 40px;
-}
 
 
+/*■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+                    CONTACT.html 
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■*/
 
-
-/* Styles pour le contenu des projets */
-
-/* Titre et date */
-.projects-title-date {
-    margin-bottom: 25px;
-    z-index: 1000;
-}
-
-.project-title {
-    margin-bottom: 10px;
-    font-size: 24px;
-    z-index: 1000;
-}
-
-.project-year {
-    color: #666;
-    font-style: italic;
-    z-index: 1000;
-}
-
-/* Section détails */
-.projects-details {
-    margin-bottom: 50px;
-    z-index: 1000;
-}
-
-.projects-details-texts {
-    margin-bottom: 30px;
-}
-
-.project-desc {
-    margin-bottom: 15px;
-}
-
-.project-intention {
-    margin-top: 15px;
-}
-
-/* Logiciels */
-.project-softwares {
-    margin: 30px 0;
-    font-style: italic;
-    color: #666;
-}
-
-/* Image */
-.project-image {
-    width: 25%;
-    height: auto;
-    margin-top: 20px;
-}
-
-
-
-
-/* -- PAGE CONTACT.html -- */
 .contacts {
     align-items: center;
     width: 50%;
@@ -178,13 +118,13 @@ body {
     align-items: center;
     justify-content: center;
     display: flex;
-    /*justify-content: space-between;*/
     padding-top: 15px;
     padding-bottom: 15px;
     padding-left: 40px;
     padding-right: 40px;
     cursor: pointer;
-    font-size: 50px;
+    font-size: 3.125rem;
+    /* 50px → fluide (50-62.5px) */
     border: solid;
     border-width: 1px;
     border-radius: 500px;
@@ -193,42 +133,19 @@ body {
 
 
 
-/* -- PAGE INDEX.html -- */
-.welcome {
-    width: 100%;
-    justify-content: center;
-    padding: 40px;
-}
-
-.welcome-item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* Centre verticalement */
-    min-height: 100vh;
-    /* Hauteur de l'écran */
-    font-size: 200px;
-}
-
-.welcome-item a {
-    text-decoration: none;
-    color: #000;
-}
-
-.welcome-item a:hover {
-    opacity: 0.6;
-}
 
 
+/*■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+                    ABOUT.html 
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■*/
 
-
-/* -- PAGE ABOUT-ME.html -- */
 .about-me {
     padding: 100px;
 }
 
 .labeur {
-    font-size: 25px;
+    font-size: 1.5625rem;
+    /* 25px → fluide (25-31.25px) */
     line-height: 1.6;
 }
 
@@ -236,11 +153,8 @@ body {
     text-decoration: none;
     position: fixed;
     bottom: 20px;
-    /* Distance du haut */
     right: 20px;
-    /* Distance de la droite */
     z-index: 1000;
-    /* Au-dessus des autres éléments */
     border: solid;
     border-width: 1px;
     padding-bottom: 8px;
@@ -253,16 +167,19 @@ body {
 .reset-button {
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 30px;
+    font-size: 1.875rem;
+    /* 30px → fluide (30-37.5px) */
     color: #c9c9c9;
-    /* Ajouter la couleur ici aussi */
-
 }
 
 
 
 
-/* -- WORK2.html -- */
+
+/*■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+                    INDEX.html 
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■*/
+
 hr {
     position: absolute;
     top: 50%;
@@ -274,6 +191,9 @@ hr {
     margin: 0;
 }
 
+
+
+/*■■■ CAROUSEL ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■*/
 .carousel {
     position: relative;
     z-index: 1000;
@@ -281,19 +201,17 @@ hr {
     align-items: center;
     gap: 20px;
     min-height: 100vh;
-    padding: 250px 250px;
-    /* Scroll horizontal */
+    padding: 0 250px;
+    /* Padding horizontal uniquement */
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
-    /* Empêche les retours à la ligne */
 }
 
 .projects-preview {
     width: 10%;
     min-width: 250px;
     height: auto;
-    margin-top: 20px;
     opacity: 0.4;
     margin-left: -110px;
     filter: grayscale(1);
@@ -305,45 +223,35 @@ hr {
 .projects-preview:hover {
     width: 25%;
     height: auto;
-    margin-top: 20px;
     opacity: 1;
     margin-left: -110px;
     filter: grayscale(0);
     z-index: 10000;
 }
 
-
-
 /* Style de la scrollbar */
 .carousel::-webkit-scrollbar {
     height: 10px;
-    /* Hauteur de la scrollbar */
 }
 
 .carousel::-webkit-scrollbar-track {
     background: #f1f1f1;
-    /* Fond de la piste */
 }
 
 .carousel::-webkit-scrollbar-thumb {
     background: #000;
-    /* Couleur de la barre */
     border-radius: 5px;
 }
 
 .carousel::-webkit-scrollbar-thumb:hover {
     background: #555;
-    /* Au survol */
 }
 
 /* Pour Firefox */
 .carousel {
     scrollbar-width: thin;
-    /* 'auto', 'thin', ou 'none' */
     scrollbar-color: #000 #f1f1f1;
-    /* barre piste */
 }
-
 
 /* Texte - bas à gauche */
 .project-info {
@@ -367,15 +275,16 @@ hr {
 
 .info-text h3 {
     margin-bottom: 10px;
-    font-size: 20px;
+    font-size: 1.25rem;
+    /* 20px → fluide (20-25px) */
 }
 
 .info-text p {
     margin: 5px 0;
-    font-size: 14px;
+    font-size: 0.875rem;
+    /* 14px → fluide (14-17.5px) */
     font-family: 'inter', Arial, sans-serif;
 }
-
 
 .info-images {
     position: fixed;
@@ -384,7 +293,6 @@ hr {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
-    /* Aligne toutes les images en bas */
     gap: 10px;
     z-index: 2000;
     opacity: 0;
@@ -407,7 +315,7 @@ hr {
 
 
 
-/* ■■■■■■■□□■□■■ Lightbox avec effet de flou ■■□■□□■■■■■■■ */
+/*■■■ LIGHTBOX ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■*/
 .lightbox {
     display: none;
     position: fixed;
@@ -417,11 +325,8 @@ hr {
     width: 100%;
     height: 100%;
     background: rgba(255, 255, 255, 0.3);
-    /* Fond blanc semi-transparent */
     backdrop-filter: blur(10px);
-    /* Flou de l'arrière-plan */
     -webkit-backdrop-filter: blur(10px);
-    /* Pour Safari */
     justify-content: center;
     align-items: center;
 }
@@ -434,7 +339,6 @@ hr {
     max-width: 70%;
     max-height: 70%;
     object-fit: contain;
-    /*box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); /* Ombre pour détacher l'image */
 }
 
 .lightbox-close {
@@ -442,7 +346,8 @@ hr {
     text-decoration: underline;
     top: 30px;
     right: 50px;
-    font-size: 25px;
+    font-size: 1.5625rem;
+    /* 25px → fluide (25-31.25px) */
     color: #000;
     cursor: pointer;
     z-index: 3001;
@@ -458,7 +363,8 @@ hr {
     text-decoration: underline;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 25px;
+    font-size: 1.5625rem;
+    /* 25px → fluide (25-31.25px) */
     color: #000;
     cursor: pointer;
     padding: 20px;
@@ -480,11 +386,7 @@ hr {
 
 
 
-
-
-
-
-/* ■■■■■■■□□■□■■ Pop-up style Windows ■■□■□□■■■■■■■ */
+/*■■■ POP-UP ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■*/
 .window-popup-contact {
     display: none;
     position: fixed;
@@ -497,17 +399,16 @@ hr {
 }
 
 .window-popup-contact.active {
-    display: block; /* Block au lieu de flex */
+    display: block;
     pointer-events: none;
 }
 
 .window-container-contact {
     position: fixed;
-    top: 100px; /* Distance du haut (en dessous de la navbar) */
-    right: 40px; /* Distance de la droite */
+    top: 100px;
+    right: 40px;
     background: white;
     border: 0.5px solid #000;
-    /*box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);*/
     width: 35%;
     max-width: 90%;
     pointer-events: auto;
@@ -525,17 +426,16 @@ hr {
 }
 
 .window-popup-about.active {
-    display: block; /* Block au lieu de flex */
+    display: block;
     pointer-events: none;
 }
 
 .window-container-about {
     position: fixed;
-    bottom: 175px; /* Distance du haut (en dessous de la navbar) */
-    right: 40px; /* Distance de la droite */
+    bottom: 175px;
+    right: 40px;
     background: white;
     border: 0.5px solid #000;
-    /*box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);*/
     width: 100%;
     max-width: 90%;
     pointer-events: auto;
@@ -569,12 +469,14 @@ hr {
 }
 
 .window-title {
-    font-size: 14px;
+    font-size: 0.875rem;
+    /* 14px → fluide (14-17.5px) */
     font-weight: normal;
 }
 
 .window-close {
-    font-size: 18px;
+    font-size: 1.125rem;
+    /* 18px → fluide (18-22.5px) */
     color: #000;
     text-decoration: underline;
     cursor: pointer;
@@ -591,7 +493,6 @@ hr {
     opacity: 50%;
 }
 
-/* □□□□ */
 .window-content {
     padding: 30px;
     line-height: 1.8;
@@ -599,6 +500,8 @@ hr {
 
 .window-content p {
     margin: 10px 0;
+    font-size: 1rem;
+    /* Fluide automatiquement */
 }
 
 .window-content a {
@@ -613,12 +516,13 @@ hr {
 .reset-button {
     text-decoration: underline;
     color: #000;
-    border:0px;
+    border: 0px;
     background: white;
     margin-top: 10px;
     cursor: pointer;
     font-family: 'MaTypo', Arial, sans-serif;
-    font-size: 14px;
+    font-size: 0.875rem;
+    /* 14px → fluide (14-17.5px) */
     transition: all 0.3s;
     justify-items: left;
 }
