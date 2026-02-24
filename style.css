@@ -1,7 +1,7 @@
 /*■■■ RESPONSIVE FONTS ■■■■■■■■■■■■■■■■■■■■■■■■■■■■*/
 html {
     font-size: 16px;
-    /* Fallback pour anciens navigateurs */
+    overflow-x: hidden; /* Au cas où */
 }
 
 @media screen and (min-width: 25em) {
@@ -20,7 +20,11 @@ html {
     }
 }
 
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 /*■■■ FONTS ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■*/
 @font-face {
@@ -55,7 +59,9 @@ body {
     font-family: 'MaTypo', Arial, sans-serif;
     background: white;
     font-size: 1rem;
-    /* Fluide automatiquement */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Empêche le scroll horizontal */
 }
 
 
@@ -201,11 +207,12 @@ hr {
     align-items: center;
     gap: 20px;
     min-height: 100vh;
+    width: 100%; /* Force la largeur */
     padding: 0 250px;
-    /* Padding horizontal uniquement */
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
+    box-sizing: border-box; /* Important ! */
 }
 
 .projects-preview {
@@ -414,6 +421,8 @@ hr {
     pointer-events: auto;
 }
 
+
+
 .window-popup-about {
     display: none;
     position: fixed;
@@ -432,7 +441,7 @@ hr {
 
 .window-container-about {
     position: fixed;
-    bottom: 175px;
+    top: 65%; /* Au lieu de bottom */
     right: 40px;
     background: white;
     border: 0.5px solid #000;
@@ -440,6 +449,8 @@ hr {
     max-width: 90%;
     pointer-events: auto;
 }
+
+
 
 @keyframes windowOpen {
     from {
@@ -472,10 +483,12 @@ hr {
     font-size: 0.875rem;
     /* 14px → fluide (14-17.5px) */
     font-weight: normal;
+    font-family: 'inter';
 }
 
 .window-close {
-    font-size: 1.125rem;
+    font-family: 'inter';
+    font-size: 0.875rem;
     /* 18px → fluide (18-22.5px) */
     color: #000;
     text-decoration: underline;
@@ -513,14 +526,17 @@ hr {
     opacity: 0.6;
 }
 
+
+
 .reset-button {
+    text-transform: lowercase;
     text-decoration: underline;
     color: #000;
     border: 0px;
     background: white;
     margin-top: 10px;
     cursor: pointer;
-    font-family: 'MaTypo', Arial, sans-serif;
+    font-family: 'inter';
     font-size: 0.875rem;
     /* 14px → fluide (14-17.5px) */
     transition: all 0.3s;
