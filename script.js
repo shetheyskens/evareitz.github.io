@@ -1,21 +1,25 @@
-// Données des projets
+//■■■ DETAILS DES PROJETS ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 const projectsData = {
-    femmes1: {
-        title: "Femmes de cinéma - Image 1",
-        year: "2026",
-        description: "Mise en page hors-série des Cahiers du Cinéma"
+    femmesdecinema: {
+        title: "Femmes de cinéma",
+        year: "2025",
+        description: "Concevoir la mise en page d’un hors-série des Cahiers du Cinéma dédié aux portraits de réalisatrices, en traduisant graphiquement la singularité de chaque parcours.",
+        intention: "Projet éditorial explorant la déconstruction des codes patriarcaux du cinéma à travers une mise en page expérimentale, utilisant l’asymétrie, la fragmentation et l’interaction. La forme graphique sert de langage pour questionner, renouveler et reconfigurer les récits et les normes visuelles.",
+        softwares: "[indesign] [photoshop]",
+        images: ["images/Femmes-de-cinema-image-1.png", "images/Femmes-de-cinema-image-2.png", "images/Femmes-de-cinema-image-3.png", "images/Femmes-de-cinema-image-4.png", "images/Femmes-de-cinema-image-2.png", "images/Femmes-de-cinema-image-2.png", "images/Femmes-de-cinema-image-2.png"]
     },
     femmes2: {
         title: "Femmes de cinéma - Image 2",
         year: "2026",
         description: "Portraits de réalisatrices"
     },
-    war: {
+    waronscreen: {
         title: "War on screen",
-        year: "2026",
+        year: "2025",
         description: "L'équipe WOS vous invite à réfléchir à la nouvelle identité visuelle du festival à travers la création de l'affiche de la 14e édition. Elle sera exposée lors de l'édition 2026.",
         intention: "L'affiche interroge le pouvoir de l'image comme acte de mémoire, capable d'immortaliser des vies menacées de disparition. La joie et l'innocence des enfants, figées dans la lumière de la projection, subsistent face à un effacement progressif suggéré par les particules.",
-        images: ["images/img1.png", "images/c mon cafe.jpg"]
+        softwares: "[illustrator] [photoshop]",
+        images: ["images/war-on-screen-1.png", "images/c mon cafe.jpg"]
     }
 };
 
@@ -32,6 +36,8 @@ function showInfo(projectId) {
     document.getElementById('info-title').textContent = project.title;
     document.getElementById('info-year').textContent = project.year;
     document.getElementById('info-description').textContent = project.description;
+    document.getElementById('info-intention').textContent = project.intention;
+    document.getElementById('info-softwares').textContent = project.softwares;
     
     imagesContainer.innerHTML = '';
     if (project.images && project.images.length > 0) {
@@ -48,6 +54,11 @@ function showInfo(projectId) {
     imagesContainer.classList.add('active');
 }
 
+
+
+
+
+//■■■ LIGHTBOX ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 // Ouvrir la lightbox
 function openLightbox(imageIndex) {
     if (!currentProject) return;
@@ -135,6 +146,9 @@ function keyPressed() {
 
 
 
+
+
+//■■■ POP-UPS ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
 // Ouvrir la pop-up contact
 function openContactPopup() {

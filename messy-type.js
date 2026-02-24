@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  const labeurDiv = document.querySelector('.labeur');
+  const labeurDiv = document.querySelector('.stuff');
   if (!labeurDiv) return;
 
   const fullText = labeurDiv.innerText.trim();
