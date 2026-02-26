@@ -1,29 +1,32 @@
 /*■■■ RESPONSIVE FONTS ■■■■■■■■■■■■■■■■■■■■■■■■■■■■*/
 
 /* Très petits mobiles (< 320px) */
+/* Très petits mobiles (< 320px) */
 html {
-    font-size: 20px;
+    font-size: 18px; /* Mobile de base */
     overflow-x: hidden;
 }
 
 /* Mobiles (320px - 400px) */
 @media screen and (min-width: 20em) { /* 320px */
     html {
-        font-size: calc(16px + (18 - 16) * ((100vw - 320px) / (400 - 320)));
+        font-size: calc(18px + (18 - 18) * ((100vw - 320px) / (400 - 320)));
+        /* Reste à 18px */
     }
 }
 
 /* Tablettes et desktop (400px - 1200px) */
 @media screen and (min-width: 25em) { /* 400px */
     html {
-        font-size: calc(18px + (20 - 18) * ((100vw - 400px) / (1200 - 400)));
+        font-size: calc(18px + (16 - 18) * ((100vw - 400px) / (1200 - 400)));
+        /* Diminue progressivement de 18px à 16px */
     }
 }
 
 /* Grand desktop (> 1200px) */
 @media screen and (min-width: 75em) { /* 1200px */
     html {
-        font-size: 20px;
+        font-size: 16px; /* Plus petit sur grand écran */
     }
 }
 
