@@ -9,9 +9,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-
-<body>
-
 <body>
     <nav class="navbar">
         <div class="nav-left">
@@ -22,12 +19,21 @@
         <div class="nav-right">
             <a href="PDF/portfolio_web.pdf" target="_blank">portfolio pdf</a>
             <a href="PDF/cv.pdf" target="_blank">cv</a>
-            <a href="contact.html" onclick="openContactPopup(); return false;">contact</a>
-            <a href="about-me.html"onclick="openAboutPopup(); return false;">about</a>
+            <a href="#" onclick="openContactPopup(); return false;">contact</a>
+            <a href="#" onclick="openAboutPopup(); return false;">about</a>
         </div>
     </nav>
 
-    
+    <!-- ■■■ FILTRES - AJOUTEZ CETTE SECTION ■■■ -->
+    <div class="filter-container">
+        <button class="filter-btn active" data-category="all" onclick="filterProjects('all')">all</button>
+        <button class="filter-btn" data-category="affiche" onclick="filterProjects('affiche')">affiches</button>
+        <button class="filter-btn" data-category="edition" onclick="filterProjects('edition')">édition</button>
+        <button class="filter-btn" data-category="illustration" onclick="filterProjects('illustration')">illustration</button>
+        <button class="filter-btn" data-category="typography" onclick="filterProjects('typography')">typography</button>
+        <button class="filter-btn" data-category="motif" onclick="filterProjects('motif')">motif</button>
+    </div>
+
     <!-- Pop-up Contact -->
     <div id="contact-popup" class="window-popup-contact">
         <div class="window-container-contact">
@@ -37,16 +43,16 @@
             </div>
             <div class="window-content">
                 <p>Eva Reitz</p>
-                <p>Email: <a href="mailto:eva.reitz@example.com">eva.reitz@example.com</a></p>
-                <p>Instagram: <a href="https://instagram.com/evareitz" target="_blank">@evareitz</a></p>
-                <p>Téléphone: +33 6 12 34 56 78</p>
-                <p>Localisation: Paris, France</p>
+                <p>Email: <a href="mailto:evrtz@outlook.fr">evrtz@outlook.fr</a></p>
+                <p>Instagram: <a href="https://instagram.com/__safegard" target="_blank">@__safegard</a></p>
+                <p>Téléphone: +33 6 59 13 47 07</p>
+                <p>Localisation: Strasbourg, France</p>
                 <button id="reset-contact-messy" class="reset-button">reset</button>
             </div>
         </div>
     </div>
 
-        <!-- Pop-up about -->
+    <!-- Pop-up about -->
     <div id="about-popup" class="window-popup-about">
         <div class="window-container-about">
             <div class="window-header">
@@ -54,56 +60,54 @@
                 <span class="window-close" onclick="closeAboutPopup()">close</span>
             </div>
             <div class="window-content">
-                <p> Je souhaite travailler en relation étroite avec les territoires et les écosystèmes qui m’accueillent. Je ne peux envisager d’appliquer des « recettes » graphiques, ni penser la communication culturelle à travers des logiques publicitaires. Je souhaite un graphisme contemporain honnête, pluriel, inclusif et généreux, qui s’interroge sur ses formes de diffusions et de transmissions dans l’espace public. Je considère que cette démarche s’étend au sujet bien plus vaste de l’habitation et des formes de partages. </p>
+                <p>Je souhaite travailler en relation étroite avec les territoires et les écosystèmes qui m'accueillent. Je ne peux envisager d'appliquer des « recettes » graphiques, ni penser la communication culturelle à travers des logiques publicitaires. Je souhaite un graphisme contemporain honnête, pluriel, inclusif et généreux, qui s'interroge sur ses formes de diffusions et de transmissions dans l'espace public. Je considère que cette démarche s'étend au sujet bien plus vaste de l'habitation et des formes de partages.</p>
                 <button id="reset-about-messy" class="reset-button">reset</button>
             </div>
         </div>
     </div>
 
-
-
-</body>
-
     <hr>
 
-    <!-- PROJECTS ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
+    <!-- PROJECTS - AJOUTEZ data-project-id sur CHAQUE image -->
     <div class="carousel">
-        <img src="images/Femmes-de-cinema-image-5.png" alt="Femmes de cinema" class="projects-preview" onclick="showInfo('femmesdecinema')">
-        <img src="images/theprimetimes-9.webp" alt="Femmes de cinema 2" class="projects-preview" onclick="showInfo('femmes2')">
-        <img src="images/war-on-screen-1.png" alt="war on screen" class="projects-preview" onclick="showInfo('waronscreen')">
-        <img src="images/theprimetimes-8.webp" alt="Italian Trulli" class="projects-preview">
-        <img src="images/Screenshot 2026-02-23 at 10.37.21.png" alt="Italian Trulli" class="projects-preview">
-        <img src="images/471797192_1786981505403855_8063023477729536155_n.jpg" alt="Italian Trulli" class="projects-preview">
-        <img src="images/IMG_414vssc2.png" alt="Italian Trulli" class="projects-preview">
-        <img src="images/Screenshot 2026-02-23 at 10.37.32.png" alt="Italian Trulli" class="projects-preview">
-        <img src="images/Screenshot 2026-02-23 at 10.37.40.png" alt="Italian Trulli" class="projects-preview">
-        <img src="images/Screenshot 2026-02-03 at 22.49.47.png" alt="Italian Trulli" class="projects-preview">
+        <img src="images/Femmes-de-cinema-image-5.png" data-project-id="femmesdecinema" alt="Femmes de cinema" class="projects-preview" onclick="showInfo('femmesdecinema')">
+        <img src="images/war-on-screen-1.png" data-project-id="waronscreen" alt="war on screen" class="projects-preview" onclick="showInfo('waronscreen')">
+        <img src="images/voix-de-stras-1.png" data-project-id="voixdestras" alt="voix de stras" class="projects-preview" onclick="showInfo('voixdestras')">
+        <img src="images/c-mon-café-2.png" data-project-id="cmoncafe" alt="c mon café" class="projects-preview" onclick="showInfo('cmoncafe')">
+        <img src="images/pas-pressé-1.png" data-project-id="paspresse" alt="pas pressé" class="projects-preview" onclick="showInfo('paspresse')">
+        <img src="images/ornement-1.jpg" data-project-id="ornement" alt="ornement" class="projects-preview" onclick="showInfo('ornement')">
+        <img src="images/datamoshing-2.jpg" data-project-id="datamoshing" alt="datamoshing" class="projects-preview" onclick="showInfo('datamoshing')">
+        <img src="images/datamoshing-1.jpg" data-project-id="datamoshing2" alt="datamoshing 2" class="projects-preview" onclick="showInfo('datamoshing2')">
+        <img src="images/ola-radio-2.png" data-project-id="olaradio" alt="ola radio" class="projects-preview" onclick="showInfo('olaradio')">
+        <img src="images/471797192_1786981505403855_8063023477729536155_n.jpg" data-project-id="projet10" alt="projet 10" class="projects-preview" onclick="showInfo('projet10')">
+        <img src="images/IMG_414vssc2.png" data-project-id="projet11" alt="projet 11" class="projects-preview" onclick="showInfo('projet11')">
+        <img src="images/Screenshot 2026-02-23 at 10.37.32.png" data-project-id="projet12" alt="projet 12" class="projects-preview" onclick="showInfo('projet12')">
+        <img src="images/Screenshot 2026-02-23 at 10.37.40.png" data-project-id="projet13" alt="projet 13" class="projects-preview" onclick="showInfo('projet13')">
+        <img src="images/Screenshot 2026-02-03 at 22.49.47.png" data-project-id="projet14" alt="projet 14" class="projects-preview" onclick="showInfo('projet14')">
     </div>
 
-
-<div id="lightbox" class="lightbox">
-    <span class="lightbox-close">close</span>
-    <span class="lightbox-prev">prev</span>
-    <span class="lightbox-next">next</span>
-    <img id="lightbox-image" src="" alt="">
-</div>
-
-
-
-<div id="project-info" class="project-info">
-    <div class="info-text">
-        <p id="info-title"></p>
-        <p id="info-year"></p>
-        <br>
-        <p id="info-description"></p>
-        <p id="info-intention"></p>
-        <br>
-        <p id="info-softwares" class="info-softwares"></p>
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">close</span>
+        <span class="lightbox-prev">prev</span>
+        <span class="lightbox-next">next</span>
+        <img id="lightbox-image" src="" alt="">
     </div>
-</div>
 
-<div id="info-images" class="info-images"></div>
+    <div id="project-info" class="project-info">
+        <div class="info-text">
+            <p id="info-title"></p>
+            <p id="info-year"></p>
+            <br>
+            <p id="info-description"></p>
+            <p id="info-intention"></p>
+            <br>
+            <p id="info-softwares" class="info-softwares"></p>
+        </div>
+    </div>
 
-<script src="script.js"></script>
-<script src="contact-messy-text.js"></script>
+    <div id="info-images" class="info-images"></div>
+
+    <script src="script.js"></script>
+    <script src="contact-messy-text.js"></script>
 </body>
+</html>

@@ -3,35 +3,150 @@ const projectsData = {
     femmesdecinema: {
         title: "Femmes de cinéma",
         year: "2025",
-        description: "Concevoir la mise en page d’un hors-série des Cahiers du Cinéma dédié aux portraits de réalisatrices, en traduisant graphiquement la singularité de chaque parcours.",
-        intention: "Projet éditorial explorant la déconstruction des codes patriarcaux du cinéma à travers une mise en page expérimentale, utilisant l’asymétrie, la fragmentation et l’interaction. La forme graphique sert de langage pour questionner, renouveler et reconfigurer les récits et les normes visuelles.",
+        categories: ["edition", "typography"],
+        description: "Concevoir la mise en page d'un hors-série des Cahiers du Cinéma dédié aux portraits de réalisatrices, en traduisant graphiquement la singularité de chaque parcours.",
+        intention: "Projet éditorial explorant la déconstruction des codes patriarcaux du cinéma à travers une mise en page expérimentale, utilisant l'asymétrie, la fragmentation et l'interaction. La forme graphique sert de langage pour questionner, renouveler et reconfigurer les récits et les normes visuelles.",
         softwares: "[indesign] [photoshop]",
-        images: ["images/Femmes-de-cinema-image-1.png", "images/Femmes-de-cinema-image-2.png", "images/Femmes-de-cinema-image-3.png", "images/Femmes-de-cinema-image-4.png", "images/Femmes-de-cinema-image-2.png", "images/Femmes-de-cinema-image-2.png", "images/Femmes-de-cinema-image-2.png"]
-    },
-    femmes2: {
-        title: "Femmes de cinéma - Image 2",
-        year: "2026",
-        description: "Portraits de réalisatrices"
+        images: ["images/Femmes-de-cinema-image-1.png", "images/Femmes-de-cinema-image-2.png", "images/Femmes-de-cinema-image-3.png", "images/Femmes-de-cinema-image-4.png"]
     },
     waronscreen: {
         title: "War on screen",
         year: "2025",
+        categories: ["affiche", "illustration"],
         description: "L'équipe WOS vous invite à réfléchir à la nouvelle identité visuelle du festival à travers la création de l'affiche de la 14e édition. Elle sera exposée lors de l'édition 2026.",
         intention: "L'affiche interroge le pouvoir de l'image comme acte de mémoire, capable d'immortaliser des vies menacées de disparition. La joie et l'innocence des enfants, figées dans la lumière de la projection, subsistent face à un effacement progressif suggéré par les particules.",
         softwares: "[illustrator] [photoshop]",
-        images: ["images/war-on-screen-1.png", "images/c mon cafe.jpg"]
+        images: ["images/war-on-screen-1.png", "images/war-on-screen-2.png"]
+    },
+    voixdestras: {
+        title: "Voix de Strasbourg",
+        year: "2025",
+        categories: ["affiche", "typography"],
+        description: "",
+        softwares: "[illustrator]",
+        images: ["images/voix-de-stras-1.png"]
+    },
+    cmoncafe: {
+        title: "C'mon Café",
+        year: "2025",
+        categories: ["affiche", "illustration"],
+        description: "",
+        softwares: "[illustrator]",
+        images: ["images/c-mon-café-2.png"]
+    },
+    paspresse: {
+        title: "Pas Pressé",
+        year: "2024",
+        categories: ["affiche", "typography"],
+        description: "",
+        softwares: "[illustrator]",
+        images: ["images/pas-pressé-1.png"]
+    },
+    ornement: {
+        title: "Ornement",
+        year: "2024",
+        categories: ["illustration", "motif"],
+        description: "",
+        softwares: "[illustrator] [photoshop]",
+        images: ["images/ornement-1.jpg"]
+    },
+    datamoshing: {
+        title: "Datamoshing",
+        year: "2024",
+        categories: ["illustration"],
+        description: "",
+        softwares: "[after effects]",
+        images: ["images/datamoshing-2.jpg"]
+    },
+    datamoshing2: {
+        title: "Datamoshing 2",
+        year: "2024",
+        categories: ["illustration"],
+        description: "",
+        softwares: "[after effects]",
+        images: ["images/datamoshing-1.jpg"]
+    },
+    olaradio: {
+        title: "Ola Radio",
+        year: "2024",
+        categories: ["affiche", "illustration"],
+        description: "",
+        softwares: "[illustrator]",
+        images: ["images/ola-radio-2.png"]
+    },
+    projet10: {
+        title: "Projet 10",
+        year: "2024",
+        categories: ["illustration"],
+        description: "",
+        images: ["images/471797192_1786981505403855_8063023477729536155_n.jpg"]
+    },
+    projet11: {
+        title: "Projet 11",
+        year: "2024",
+        categories: ["illustration"],
+        description: "",
+        images: ["images/IMG_414vssc2.png"]
+    },
+    projet12: {
+        title: "Projet 12",
+        year: "2024",
+        categories: ["illustration"],
+        description: "",
+        images: ["images/Screenshot 2026-02-23 at 10.37.32.png"]
+    },
+    projet13: {
+        title: "Projet 13",
+        year: "2024",
+        categories: ["illustration"],
+        description: "",
+        images: ["images/Screenshot 2026-02-23 at 10.37.40.png"]
+    },
+    projet14: {
+        title: "Projet 14",
+        year: "2024",
+        categories: ["illustration"],
+        description: "",
+        images: ["images/Screenshot 2026-02-03 at 22.49.47.png"]
     }
 };
 
 let currentProject = null;
 let currentImageIndex = 0;
+let currentFilter = 'all'; // Filtre actuel
+
+//■■■ SYSTÈME DE FILTRE ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+
+function filterProjects(category) {
+    currentFilter = category;
+    
+    // Mettre à jour les boutons actifs
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    document.querySelector(`[data-category="${category}"]`).classList.add('active');
+    
+    // Filtrer les images du carousel
+    const allImages = document.querySelectorAll('.projects-preview');
+    
+    allImages.forEach(img => {
+        const projectId = img.getAttribute('data-project-id');
+        const project = projectsData[projectId];
+        
+        if (category === 'all' || (project.categories && project.categories.includes(category))) {
+            img.style.display = 'block';
+        } else {
+            img.style.display = 'none';
+        }
+    });
+}
 
 function showInfo(projectId) {
     const project = projectsData[projectId];
     const infoDiv = document.getElementById('project-info');
     const imagesContainer = document.getElementById('info-images');
     
-    currentProject = projectId; // Sauvegarder le projet actuel
+    currentProject = projectId;
     
     document.getElementById('info-title').textContent = project.title;
     document.getElementById('info-year').textContent = project.year;
@@ -45,7 +160,7 @@ function showInfo(projectId) {
             const img = document.createElement('img');
             img.src = imgSrc;
             img.alt = project.title;
-            img.onclick = () => openLightbox(index); // Ouvrir la lightbox au clic
+            img.onclick = () => openLightbox(index);
             imagesContainer.appendChild(img);
         });
     }
@@ -54,12 +169,7 @@ function showInfo(projectId) {
     imagesContainer.classList.add('active');
 }
 
-
-
-
-
 //■■■ LIGHTBOX ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-// Ouvrir la lightbox
 function openLightbox(imageIndex) {
     if (!currentProject) return;
     
@@ -74,12 +184,10 @@ function openLightbox(imageIndex) {
     lightbox.classList.add('active');
 }
 
-// Fermer la lightbox
 function closeLightbox() {
     document.getElementById('lightbox').classList.remove('active');
 }
 
-// Navigation dans la lightbox
 function changeImage(direction) {
     if (!currentProject) return;
     
@@ -88,7 +196,6 @@ function changeImage(direction) {
     
     currentImageIndex += direction;
     
-    // Boucler : revenir au début ou à la fin
     if (currentImageIndex < 0) {
         currentImageIndex = project.images.length - 1;
     } else if (currentImageIndex >= project.images.length) {
@@ -98,24 +205,20 @@ function changeImage(direction) {
     document.getElementById('lightbox-image').src = project.images[currentImageIndex];
 }
 
-// Event listeners pour la lightbox
 document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
 document.querySelector('.lightbox-prev').addEventListener('click', () => changeImage(-1));
 document.querySelector('.lightbox-next').addEventListener('click', () => changeImage(1));
 
-// Fermer avec Escape
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeLightbox();
     if (e.key === 'ArrowLeft') changeImage(-1);
     if (e.key === 'ArrowRight') changeImage(1);
 });
 
-// Fermer en cliquant en dehors de l'image
 document.getElementById('lightbox').addEventListener('click', (e) => {
     if (e.target.id === 'lightbox') closeLightbox();
 });
 
-// Fermer les infos en cliquant ailleurs
 document.addEventListener('click', (e) => {
     if (!e.target.classList.contains('projects-preview') && 
         !document.getElementById('project-info').contains(e.target) &&
@@ -125,7 +228,7 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// p5.js code pour le dessin
+//■■■ P5.JS ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 function setup() {
     let canvas = createCanvas(windowWidth, windowHeight);
     canvas.position(0, 0);
@@ -144,33 +247,23 @@ function keyPressed() {
     }
 }
 
-
-
-
-
 //■■■ POP-UPS ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-
-// Ouvrir la pop-up contact
 function openContactPopup() {
     document.getElementById('contact-popup').classList.add('active');
 }
 
-// Fermer la pop-up contact
 function closeContactPopup() {
     document.getElementById('contact-popup').classList.remove('active');
 }
 
-// Ouvrir la pop-up about
 function openAboutPopup() {
     document.getElementById('about-popup').classList.add('active');
 }
 
-// Fermer la pop-up about
 function closeAboutPopup() {
     document.getElementById('about-popup').classList.remove('active');
 }
 
-// Fermer avec Escape
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         closeContactPopup();
@@ -178,7 +271,7 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Drag & drop pour TOUTES les fenêtres
+//■■■ DRAG & DROP WINDOWS ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 document.addEventListener('DOMContentLoaded', () => {
     const windowContainers = document.querySelectorAll('.window-container-contact, .window-container-about');
     
@@ -191,8 +284,6 @@ document.addEventListener('DOMContentLoaded', () => {
             isDragging = true;
             initialX = e.clientX - (windowContainer.offsetLeft || 0);
             initialY = e.clientY - (windowContainer.offsetTop || 0);
-            
-            // Empêcher la sélection de texte pendant le drag
             e.preventDefault();
         });
 
