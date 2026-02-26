@@ -95,7 +95,8 @@ body {
 }
 
 .nav-left .logo img {
-    height: 1.875rem;
+    /*height: 1.875rem;*/
+    height: 1.5rem;
     /* 30px → fluide (30-37.5px) */
     width: auto;
 }
@@ -605,10 +606,22 @@ hr {
     border: 1px solid #000;
     display: inline-block;
     transition: all 0.3s;
+    box-sizing: border-box;
 }
 
+/* Croix à l’intérieur du carré */
 .filter-btn:hover::before {
-    background: #ccc; 
+    background:
+        linear-gradient(45deg,
+            transparent 45%,
+            #000 45%,
+            #000 55%,
+            transparent 55%),
+        linear-gradient(-45deg,
+            transparent 45%,
+            #000 45%,
+            #000 55%,
+            transparent 55%);
 }
 
 .filter-btn.active::before {
