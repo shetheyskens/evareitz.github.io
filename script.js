@@ -3,7 +3,7 @@ const projectsData = {
     femmesdecinema: {
         title: "Femmes de cinéma",
         year: "2025",
-        categories: ["edition", "typography"],
+        categories: ["books"],
         description: "Concevoir la mise en page d'un hors-série des Cahiers du Cinéma dédié aux portraits de réalisatrices, en traduisant graphiquement la singularité de chaque parcours.",
         intention: "Projet éditorial explorant la déconstruction des codes patriarcaux du cinéma à travers une mise en page expérimentale, utilisant l'asymétrie, la fragmentation et l'interaction. La forme graphique sert de langage pour questionner, renouveler et reconfigurer les récits et les normes visuelles.",
         softwares: "[indesign] [photoshop]",
@@ -12,7 +12,7 @@ const projectsData = {
     waronscreen: {
         title: "War on screen",
         year: "2025",
-        categories: ["affiche", "illustration"],
+        categories: ["posters"],
         description: "L'équipe WOS vous invite à réfléchir à la nouvelle identité visuelle du festival à travers la création de l'affiche de la 14e édition. Elle sera exposée lors de l'édition 2026.",
         intention: "L'affiche interroge le pouvoir de l'image comme acte de mémoire, capable d'immortaliser des vies menacées de disparition. La joie et l'innocence des enfants, figées dans la lumière de la projection, subsistent face à un effacement progressif suggéré par les particules.",
         softwares: "[illustrator] [photoshop]",
@@ -21,23 +21,23 @@ const projectsData = {
     voixdestras: {
         title: "Voix de Strasbourg",
         year: "2025",
-        categories: ["affiche", "typography"],
+        categories: ["video"],
         description: "",
-        softwares: "[illustrator]",
+        softwares: "[after effects] [procreate]",
         images: ["images/voix-de-stras-1.png"]
     },
     cmoncafe: {
         title: "C'mon Café",
         year: "2025",
-        categories: ["affiche", "illustration"],
+        categories: ["branding"],
         description: "",
-        softwares: "[illustrator]",
+        softwares: "[illustrator] [procreate] [blender]",
         images: ["images/c-mon-café-2.png"]
     },
     paspresse: {
         title: "Pas Pressé",
         year: "2024",
-        categories: ["affiche", "typography"],
+        categories: ["branding"],
         description: "",
         softwares: "[illustrator]",
         images: ["images/pas-pressé-1.png"]
@@ -45,7 +45,7 @@ const projectsData = {
     ornement: {
         title: "Ornement",
         year: "2024",
-        categories: ["illustration", "motif"],
+        categories: ["object"],
         description: "",
         softwares: "[illustrator] [photoshop]",
         images: ["images/ornement-1.jpg"]
@@ -53,40 +53,40 @@ const projectsData = {
     datamoshing: {
         title: "Datamoshing",
         year: "2024",
-        categories: ["illustration"],
+        categories: ["experimentations"],
         description: "",
-        softwares: "[after effects]",
+        softwares: "[touch designer]",
         images: ["images/datamoshing-2.jpg"]
     },
     datamoshing2: {
         title: "Datamoshing 2",
         year: "2024",
-        categories: ["illustration"],
+        categories: ["experimentations"],
         description: "",
-        softwares: "[after effects]",
+        softwares: "[touch designer]",
         images: ["images/datamoshing-1.jpg"]
     },
     olaradio: {
         title: "Ola Radio",
         year: "2024",
-        categories: ["affiche", "illustration"],
+        categories: ["web"],
         description: "",
-        softwares: "[illustrator]",
+        softwares: "[figma]",
         images: ["images/ola-radio-2.png"]
     },
     projet10: {
-        title: "Projet 10",
+        title: "𝒲ear me ✄𓄧⚉ ∷⃝♪",
         year: "2024",
         categories: ["illustration"],
         description: "",
-        images: ["images/471797192_1786981505403855_8063023477729536155_n.jpg"]
+        images: ["images/wear-me-3.png"]
     },
     projet11: {
         title: "Projet 11",
         year: "2024",
         categories: ["illustration"],
         description: "",
-        images: ["images/IMG_414vssc2.png"]
+        images: ["images/falaise-1.png"]
     },
     projet12: {
         title: "Projet 12",
@@ -302,5 +302,60 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('mouseup', () => {
             isDragging = false;
         });
+    });
+});
+
+document.querySelectorAll('.resize-handle').forEach(handle => {
+
+    handle.addEventListener('mousedown', (e) => {
+        e.stopPropagation();
+        const windowEl = handle.closest('.window-container-contact, .window-container-about');
+
+        const startX = e.clientX;
+        const startY = e.clientY;
+        const startWidth = windowEl.offsetWidth;
+        const startHeight = windowEl.offsetHeight;
+        const startLeft = windowEl.offsetLeft;
+        const startTop = windowEl.offsetTop;
+
+        function resize(eMove) {
+
+            if (handle.classList.contains('bottom-right')) {
+                windowEl.style.width = startWidth + (eMove.clientX - startX) + 'px';
+                windowEl.style.height = startHeight + (eMove.clientY - startY) + 'px';
+            }
+
+            if (handle.classList.contains('bottom-left')) {
+                const newWidth = startWidth - (eMove.clientX - startX);
+                windowEl.style.width = newWidth + 'px';
+                windowEl.style.left = startLeft + (eMove.clientX - startX) + 'px';
+                windowEl.style.height = startHeight + (eMove.clientY - startY) + 'px';
+            }
+
+            if (handle.classList.contains('top-right')) {
+                const newHeight = startHeight - (eMove.clientY - startY);
+                windowEl.style.height = newHeight + 'px';
+                windowEl.style.top = startTop + (eMove.clientY - startY) + 'px';
+                windowEl.style.width = startWidth + (eMove.clientX - startX) + 'px';
+            }
+
+            if (handle.classList.contains('top-left')) {
+                const newWidth = startWidth - (eMove.clientX - startX);
+                const newHeight = startHeight - (eMove.clientY - startY);
+
+                windowEl.style.width = newWidth + 'px';
+                windowEl.style.height = newHeight + 'px';
+                windowEl.style.left = startLeft + (eMove.clientX - startX) + 'px';
+                windowEl.style.top = startTop + (eMove.clientY - startY) + 'px';
+            }
+        }
+
+        function stopResize() {
+            document.removeEventListener('mousemove', resize);
+            document.removeEventListener('mouseup', stopResize);
+        }
+
+        document.addEventListener('mousemove', resize);
+        document.addEventListener('mouseup', stopResize);
     });
 });
