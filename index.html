@@ -33,6 +33,7 @@
         <button class="filter-btn" data-category="video" onclick="filterProjects('video')">video</button>
         <button class="filter-btn" data-category="web" onclick="filterProjects('web')">web</button>
         <button class="filter-btn" data-category="illustration" onclick="filterProjects('illustration')">illustration</button>
+        <button class="filter-btn" data-category="photography" onclick="filterProjects('photography')">photography</button>
         <button class="filter-btn" data-category="object" onclick="filterProjects('object')">object</button>
         <button class="filter-btn" data-category="experimentations" onclick="filterProjects('experimentations')">experimentations</button>
     </div>
@@ -50,8 +51,11 @@
                 <p>Instagram: <a href="https://instagram.com/__safegard" target="_blank">@__safegard</a></p>
                 <p>Téléphone: +33 6 59 13 47 07</p>
                 <p>Localisation: Strasbourg, France</p>
-                <button id="reset-contact-messy" class="reset-button">reset</button>
-            </div>
+    </div>
+    <div class="window-footer">
+        <button id="reset-contact-messy" class="reset-button">reset</button>
+    </div>
+</div>
 
             <div class="resize-handle top-left"></div>
 <div class="resize-handle top-right"></div>
@@ -70,10 +74,13 @@
             </div>
             <div class="window-content">
                 <p>Je souhaite travailler en relation étroite avec les territoires et les écosystèmes qui m'accueillent. Je ne peux envisager d'appliquer des « recettes » graphiques, ni penser la communication culturelle à travers des logiques publicitaires. Je souhaite un graphisme contemporain honnête, pluriel, inclusif et généreux, qui s'interroge sur ses formes de diffusions et de transmissions dans l'espace public. Je considère que cette démarche s'étend au sujet bien plus vaste de l'habitation et des formes de partages.</p>
-                <button id="reset-about-messy" class="reset-button">reset</button>
-            </div>
+    </div>
+    <div class="window-footer">
+        <button id="reset-about-messy" class="reset-button">reset</button>
+    </div>
+</div>
 
-            <div class="resize-handle top-left"></div>
+
 <div class="resize-handle top-right"></div>
 <div class="resize-handle bottom-left"></div>
 <div class="resize-handle bottom-right"></div>
@@ -90,16 +97,17 @@
         <img src="images/Femmes-de-cinema-image-7.png" data-project-id="femmesdecinema" alt="Femmes de cinema" class="projects-preview" onclick="showInfo('femmesdecinema')">
         <img src="images/war-on-screen-1.png" data-project-id="waronscreen" alt="war on screen" class="projects-preview" onclick="showInfo('waronscreen')">
         <img src="images/voix-de-stras-1.png" data-project-id="voixdestras" alt="voix de stras" class="projects-preview" onclick="showInfo('voixdestras')">
-        <img src="images/c-mon-café-2.png" data-project-id="cmoncafe" alt="c mon café" class="projects-preview" onclick="showInfo('cmoncafe')">
+        <img src="images/c-mon-cafe-5.png" data-project-id="cmoncafe" alt="c mon café" class="projects-preview" onclick="showInfo('cmoncafe')">
         <img src="images/pas-pressé-1.png" data-project-id="paspresse" alt="pas pressé" class="projects-preview" onclick="showInfo('paspresse')">
+        <img src="images/lampe-1.png" data-project-id="lampe" alt="lampe" class="projects-preview" onclick="showInfo('lampe')">
         <img src="images/ornement-1.jpg" data-project-id="ornement" alt="ornement" class="projects-preview" onclick="showInfo('ornement')">
         <img src="images/datamoshing-2.jpg" data-project-id="datamoshing" alt="datamoshing" class="projects-preview" onclick="showInfo('datamoshing')">
         <img src="images/datamoshing-1.jpg" data-project-id="datamoshing2" alt="datamoshing 2" class="projects-preview" onclick="showInfo('datamoshing2')">
         <img src="images/ola-radio-2.png" data-project-id="olaradio" alt="ola radio" class="projects-preview" onclick="showInfo('olaradio')">
         <img src="images/wear-me-3.png" data-project-id="projet10" alt="projet 10" class="projects-preview" onclick="showInfo('projet10')">
         <img src="images/falaise-1.png" data-project-id="projet11" alt="projet 11" class="projects-preview" onclick="showInfo('projet11')">
-        <img src="images/Screenshot 2026-02-23 at 10.37.32.png" data-project-id="projet12" alt="projet 12" class="projects-preview" onclick="showInfo('projet12')">
-        <img src="images/Screenshot 2026-02-23 at 10.37.40.png" data-project-id="projet13" alt="projet 13" class="projects-preview" onclick="showInfo('projet13')">
+        <img src="images/fragilité-1.png" data-project-id="projet12" alt="projet 12" class="projects-preview" onclick="showInfo('projet12')">
+        <img src="images/sarai-fenrings-1.jpg" data-project-id="projet13" alt="projet 13" class="projects-preview" onclick="showInfo('projet13')">
         <img src="images/Screenshot 2026-02-03 at 22.49.47.png" data-project-id="projet14" alt="projet 14" class="projects-preview" onclick="showInfo('projet14')">
     </div>
 
@@ -113,6 +121,7 @@
     <div id="project-info" class="project-info">
         <div class="info-text">
             <p id="info-title"></p>
+            <p id="info-mediums"></p>
             <p id="info-year"></p>
             <br>
             <p id="info-description"></p>
@@ -125,6 +134,7 @@
     <div id="info-images" class="info-images"></div>
 
     <script src="script.js"></script>
-    <script src="contact-messy-text.js"></script>
+    <script src="windows-system.js"></script>
+    <script src="messy-text.js"></script>
 </body>
 </html>

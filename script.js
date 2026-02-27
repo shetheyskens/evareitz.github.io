@@ -76,31 +76,40 @@ const projectsData = {
     },
     projet10: {
         title: "𝒲ear me ✄𓄧⚉ ∷⃝♪",
+        mediums: "graphite sur calque",
         year: "2024",
         categories: ["illustration"],
         description: "",
         images: ["images/wear-me-3.png"]
     },
     projet11: {
-        title: "Projet 11",
-        year: "2024",
+        title: "Falaise",
+        year: "2025",
         categories: ["illustration"],
         description: "",
         images: ["images/falaise-1.png"]
     },
     projet12: {
-        title: "Projet 12",
-        year: "2024",
-        categories: ["illustration"],
-        description: "",
+        title: "Fragile",
+        year: "2025",
+        categories: ["photography", "posters"],
+        description: "Une exposition organisée par La Chambre en collaboration avec Eva Reitz. Fragile rassemble une série de photographies autour de la fragilité, où se croisent plumes, tissu déchiré et corps figé. Les images captent des instant où chaque matière semble sur le point de se rompre, de tomber ou de disparaître. Tout ici parle d’équilibres instables, d’apparitions brèves, de formes abîmées. L’exposition parle d’équilibres instables, d’apparitions brèves, de formes abîmées.",
         images: ["images/Screenshot 2026-02-23 at 10.37.32.png"]
     },
-    projet13: {
-        title: "Projet 13",
+    lampe: {
+        title: "lampe",
+        mediums: "metal",
         year: "2024",
-        categories: ["illustration"],
+        categories: ["photography"],
         description: "",
-        images: ["images/Screenshot 2026-02-23 at 10.37.40.png"]
+        images: ["images/sarai-fenrings-1.jpg"]
+    },
+    projet13: {
+        title: "Mix",
+        year: "2024",
+        categories: ["photography"],
+        description: "",
+        images: ["images/sarai-fenrings-1.jpg"]
     },
     projet14: {
         title: "Projet 14",
@@ -119,20 +128,20 @@ let currentFilter = 'all'; // Filtre actuel
 
 function filterProjects(category) {
     currentFilter = category;
-    
+
     // Mettre à jour les boutons actifs
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.classList.remove('active');
     });
     document.querySelector(`[data-category="${category}"]`).classList.add('active');
-    
+
     // Filtrer les images du carousel
     const allImages = document.querySelectorAll('.projects-preview');
-    
+
     allImages.forEach(img => {
         const projectId = img.getAttribute('data-project-id');
         const project = projectsData[projectId];
-        
+
         if (category === 'all' || (project.categories && project.categories.includes(category))) {
             img.style.display = 'block';
         } else {
@@ -145,15 +154,16 @@ function showInfo(projectId) {
     const project = projectsData[projectId];
     const infoDiv = document.getElementById('project-info');
     const imagesContainer = document.getElementById('info-images');
-    
+
     currentProject = projectId;
-    
+
     document.getElementById('info-title').textContent = project.title;
+    document.getElementById('info-mediums').textContent = project.mediums;
     document.getElementById('info-year').textContent = project.year;
     document.getElementById('info-description').textContent = project.description;
     document.getElementById('info-intention').textContent = project.intention;
     document.getElementById('info-softwares').textContent = project.softwares;
-    
+
     imagesContainer.innerHTML = '';
     if (project.images && project.images.length > 0) {
         project.images.forEach((imgSrc, index) => {
@@ -164,7 +174,7 @@ function showInfo(projectId) {
             imagesContainer.appendChild(img);
         });
     }
-    
+
     infoDiv.classList.add('active');
     imagesContainer.classList.add('active');
 }
@@ -172,14 +182,14 @@ function showInfo(projectId) {
 //■■■ LIGHTBOX ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 function openLightbox(imageIndex) {
     if (!currentProject) return;
-    
+
     const project = projectsData[currentProject];
     if (!project.images || project.images.length === 0) return;
-    
+
     currentImageIndex = imageIndex;
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightbox-image');
-    
+
     lightboxImage.src = project.images[currentImageIndex];
     lightbox.classList.add('active');
 }
@@ -190,18 +200,18 @@ function closeLightbox() {
 
 function changeImage(direction) {
     if (!currentProject) return;
-    
+
     const project = projectsData[currentProject];
     if (!project.images || project.images.length === 0) return;
-    
+
     currentImageIndex += direction;
-    
+
     if (currentImageIndex < 0) {
         currentImageIndex = project.images.length - 1;
     } else if (currentImageIndex >= project.images.length) {
         currentImageIndex = 0;
     }
-    
+
     document.getElementById('lightbox-image').src = project.images[currentImageIndex];
 }
 
@@ -220,7 +230,7 @@ document.getElementById('lightbox').addEventListener('click', (e) => {
 });
 
 document.addEventListener('click', (e) => {
-    if (!e.target.classList.contains('projects-preview') && 
+    if (!e.target.classList.contains('projects-preview') &&
         !document.getElementById('project-info').contains(e.target) &&
         !document.getElementById('info-images').contains(e.target)) {
         document.getElementById('project-info').classList.remove('active');
@@ -246,116 +256,3 @@ function keyPressed() {
         background(255);
     }
 }
-
-//■■■ POP-UPS ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-function openContactPopup() {
-    document.getElementById('contact-popup').classList.add('active');
-}
-
-function closeContactPopup() {
-    document.getElementById('contact-popup').classList.remove('active');
-}
-
-function openAboutPopup() {
-    document.getElementById('about-popup').classList.add('active');
-}
-
-function closeAboutPopup() {
-    document.getElementById('about-popup').classList.remove('active');
-}
-
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        closeContactPopup();
-        closeAboutPopup();
-    }
-});
-
-//■■■ DRAG & DROP WINDOWS ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-document.addEventListener('DOMContentLoaded', () => {
-    const windowContainers = document.querySelectorAll('.window-container-contact, .window-container-about');
-    
-    windowContainers.forEach(windowContainer => {
-        const windowHeader = windowContainer.querySelector('.window-header');
-        let isDragging = false;
-        let initialX, initialY;
-
-        windowHeader?.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            initialX = e.clientX - (windowContainer.offsetLeft || 0);
-            initialY = e.clientY - (windowContainer.offsetTop || 0);
-            e.preventDefault();
-        });
-
-        document.addEventListener('mousemove', (e) => {
-            if (isDragging) {
-                e.preventDefault();
-                const currentX = e.clientX - initialX;
-                const currentY = e.clientY - initialY;
-                
-                windowContainer.style.position = 'absolute';
-                windowContainer.style.left = currentX + 'px';
-                windowContainer.style.top = currentY + 'px';
-            }
-        });
-
-        document.addEventListener('mouseup', () => {
-            isDragging = false;
-        });
-    });
-});
-
-document.querySelectorAll('.resize-handle').forEach(handle => {
-
-    handle.addEventListener('mousedown', (e) => {
-        e.stopPropagation();
-        const windowEl = handle.closest('.window-container-contact, .window-container-about');
-
-        const startX = e.clientX;
-        const startY = e.clientY;
-        const startWidth = windowEl.offsetWidth;
-        const startHeight = windowEl.offsetHeight;
-        const startLeft = windowEl.offsetLeft;
-        const startTop = windowEl.offsetTop;
-
-        function resize(eMove) {
-
-            if (handle.classList.contains('bottom-right')) {
-                windowEl.style.width = startWidth + (eMove.clientX - startX) + 'px';
-                windowEl.style.height = startHeight + (eMove.clientY - startY) + 'px';
-            }
-
-            if (handle.classList.contains('bottom-left')) {
-                const newWidth = startWidth - (eMove.clientX - startX);
-                windowEl.style.width = newWidth + 'px';
-                windowEl.style.left = startLeft + (eMove.clientX - startX) + 'px';
-                windowEl.style.height = startHeight + (eMove.clientY - startY) + 'px';
-            }
-
-            if (handle.classList.contains('top-right')) {
-                const newHeight = startHeight - (eMove.clientY - startY);
-                windowEl.style.height = newHeight + 'px';
-                windowEl.style.top = startTop + (eMove.clientY - startY) + 'px';
-                windowEl.style.width = startWidth + (eMove.clientX - startX) + 'px';
-            }
-
-            if (handle.classList.contains('top-left')) {
-                const newWidth = startWidth - (eMove.clientX - startX);
-                const newHeight = startHeight - (eMove.clientY - startY);
-
-                windowEl.style.width = newWidth + 'px';
-                windowEl.style.height = newHeight + 'px';
-                windowEl.style.left = startLeft + (eMove.clientX - startX) + 'px';
-                windowEl.style.top = startTop + (eMove.clientY - startY) + 'px';
-            }
-        }
-
-        function stopResize() {
-            document.removeEventListener('mousemove', resize);
-            document.removeEventListener('mouseup', stopResize);
-        }
-
-        document.addEventListener('mousemove', resize);
-        document.addEventListener('mouseup', stopResize);
-    });
-});
