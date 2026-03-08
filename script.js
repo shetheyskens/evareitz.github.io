@@ -20,73 +20,69 @@ const projectsData = {
     },
     voixdestras: {
         title: "Voix de Strasbourg",
-        year: "2025",
+        year: "2026",
         categories: ["video"],
-        description: "",
         softwares: "[after effects] [procreate]",
         images: ["images/voix-de-stras-1.png"]
     },
     cmoncafe: {
         title: "C'mon Café",
-        year: "2025",
+        year: "2026",
         categories: ["branding"],
-        description: "",
-        softwares: "[illustrator] [procreate] [blender]",
+        description: "Une start-up lance un nouveau coffret de café comprenant tous les objets et produits pour vivre une découverte gustative personnalisé.",
+        intention: "Dans un contexte de surconsommation, le projet valorise l’artisanat et l’imperfection en s’inspirant des philosophies Mingei et Wabi-sabi. C mon café place le client au centre de la création de son mélange, faisant de chaque café un objet unique, humain et accessible.",
+        softwares: "[blender] [photoshop] [illustrator]",
         images: ["images/c-mon-café-2.png"]
     },
     paspresse: {
         title: "Pas Pressé",
-        year: "2024",
+        year: "2026",
         categories: ["branding"],
-        description: "",
-        softwares: "[illustrator]",
+        description: "Création de l’identité visuelle ainsi que de la modélisation.",
+        intention: "Le design des bouteilles s’inspire des contenants médicaux pour inspirer confiance et légitimité, privilégiant un visuel d’expertise et de rigueur.",
+        softwares: "[blender] [photoshop] [illustrator]",
         images: ["images/pas-pressé-1.png"]
     },
     ornement: {
         title: "Ornement",
         year: "2024",
         categories: ["object"],
-        description: "",
         softwares: "[illustrator] [photoshop]",
         images: ["images/ornement-1.jpg"]
     },
     datamoshing: {
         title: "Datamoshing",
-        year: "2024",
+        year: "2026",
         categories: ["experimentations"],
-        description: "",
         softwares: "[touch designer]",
         images: ["images/datamoshing-2.jpg"]
     },
     datamoshing2: {
         title: "Datamoshing 2",
-        year: "2024",
+        year: "2026",
         categories: ["experimentations"],
-        description: "",
         softwares: "[touch designer]",
         images: ["images/datamoshing-1.jpg"]
     },
     olaradio: {
         title: "Ola Radio",
-        year: "2024",
+        year: "2025",
         categories: ["web"],
-        description: "",
+        description: "Adaptation d’un site web déjà existant dans un format responsive. Choix porté sur Ola Radio, une webradio indépendante marseillaise portée spécialisée dans la musique électronique.",
         softwares: "[figma]",
         images: ["images/ola-radio-2.png"]
     },
     projet10: {
         title: "𝒲ear me ✄𓄧⚉ ∷⃝♪",
         mediums: "graphite sur calque",
-        year: "2024",
+        year: "2025",
         categories: ["illustration"],
-        description: "",
         images: ["images/wear-me-3.png"]
     },
     projet11: {
         title: "Falaise",
-        year: "2025",
+        year: "2026",
         categories: ["illustration"],
-        description: "",
         images: ["images/falaise-1.png"]
     },
     projet12: {
@@ -101,22 +97,17 @@ const projectsData = {
         mediums: "metal",
         year: "2024",
         categories: ["photography"],
-        description: "",
+        description: "Fortement inspirée par le mouvement brutaliste, j’ai concu ma lampe avec une forme rappelant celle des poteaux électriques.",
+        softwares: "[indesign] [photoshop] [blender]",
         images: ["images/sarai-fenrings-1.jpg"]
     },
     projet13: {
         title: "Mix",
         year: "2024",
         categories: ["photography"],
-        description: "",
+        description: "Shooting pour une cover d’un DJ set de cinq DJ strasbourgeois dans lequel j’ai joué le rôle d’assistante lumière et de créatrice de contenu pour les réseaux sociaux.",
+        softwares: "[figma]",
         images: ["images/sarai-fenrings-1.jpg"]
-    },
-    projet14: {
-        title: "Projet 14",
-        year: "2024",
-        categories: ["illustration"],
-        description: "",
-        images: ["images/Screenshot 2026-02-03 at 22.49.47.png"]
     }
 };
 
