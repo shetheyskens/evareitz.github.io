@@ -96,7 +96,7 @@ body {
 
 .nav-left .logo img {
     /*height: 1.875rem;*/
-    height: 1.5rem;
+    height: 2.5rem;
     /* 30px → fluide (30-37.5px) */
     width: auto;
 }
@@ -212,6 +212,7 @@ hr {
 
 
 /*■■■ CAROUSEL ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■*/
+/*■■■ CAROUSEL ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■*/
 .carousel {
     position: relative;
     z-index: 1000;
@@ -219,12 +220,12 @@ hr {
     align-items: center;
     gap: 20px;
     min-height: 100vh;
-    width: 100%; /* Force la largeur */
+    width: 100%;
     padding: 0 250px;
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
-    box-sizing: border-box; /* Important ! */
+    box-sizing: border-box;
 }
 
 .projects-preview {
@@ -239,7 +240,8 @@ hr {
     transition: opacity 0.3s;
 }
 
-.projects-preview:hover {
+.projects-preview:hover,
+.projects-preview.active { /* Ajoutez cette classe */
     width: 25%;
     height: auto;
     opacity: 1;

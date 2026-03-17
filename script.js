@@ -143,18 +143,47 @@ function filterProjects(category) {
 
 function showInfo(projectId) {
     const project = projectsData[projectId];
+    
+    // Vérifier si le projet existe
+    if (!project) {
+        console.error('Projet non trouvé:', projectId);
+        return;
+    }
+    
     const infoDiv = document.getElementById('project-info');
     const imagesContainer = document.getElementById('info-images');
-
+    
     currentProject = projectId;
-
-    document.getElementById('info-title').textContent = project.title;
-    document.getElementById('info-mediums').textContent = project.mediums;
-    document.getElementById('info-year').textContent = project.year;
-    document.getElementById('info-description').textContent = project.description;
-    document.getElementById('info-intention').textContent = project.intention;
-    document.getElementById('info-softwares').textContent = project.softwares;
-
+    
+    // ■■■ NOUVELLE PARTIE : Gérer l'état actif des images ■■■
+    // Retirer la classe active de toutes les images
+    document.querySelectorAll('.projects-preview').forEach(img => {
+        img.classList.remove('active');
+    });
+    
+    // Ajouter la classe active à l'image cliquée
+    const clickedImage = document.querySelector(`[data-project-id="${projectId}"]`);
+    if (clickedImage) {
+        clickedImage.classList.add('active');
+    }
+    // ■■■ FIN NOUVELLE PARTIE ■■■
+    
+    // Remplir les infos
+    const titleElement = document.getElementById('info-title');
+    const mediumsElement = document.getElementById('info-mediums');
+    const yearElement = document.getElementById('info-year');
+    const descElement = document.getElementById('info-description');
+    const intentionElement = document.getElementById('info-intention');
+    const softwaresElement = document.getElementById('info-softwares');
+    
+    if (titleElement) titleElement.textContent = project.title || '';
+    if (mediumsElement) mediumsElement.textContent = project.mediums || '';
+    if (yearElement) yearElement.textContent = project.year || '';
+    if (descElement) descElement.textContent = project.description || '';
+    if (intentionElement) intentionElement.textContent = project.intention || '';
+    if (softwaresElement) softwaresElement.textContent = project.softwares || '';
+    
+    // Remplir les images
     imagesContainer.innerHTML = '';
     if (project.images && project.images.length > 0) {
         project.images.forEach((imgSrc, index) => {
@@ -165,7 +194,7 @@ function showInfo(projectId) {
             imagesContainer.appendChild(img);
         });
     }
-
+    
     infoDiv.classList.add('active');
     imagesContainer.classList.add('active');
 }
@@ -220,12 +249,20 @@ document.getElementById('lightbox').addEventListener('click', (e) => {
     if (e.target.id === 'lightbox') closeLightbox();
 });
 
+// Fermer les infos en cliquant ailleurs
 document.addEventListener('click', (e) => {
-    if (!e.target.classList.contains('projects-preview') &&
+    if (!e.target.classList.contains('projects-preview') && 
         !document.getElementById('project-info').contains(e.target) &&
         !document.getElementById('info-images').contains(e.target)) {
+        
+        // Fermer les panneaux d'info
         document.getElementById('project-info').classList.remove('active');
         document.getElementById('info-images').classList.remove('active');
+        
+        // ■■■ NOUVEAU : Retirer l'état actif de toutes les images ■■■
+        document.querySelectorAll('.projects-preview').forEach(img => {
+            img.classList.remove('active');
+        });
     }
 });
 
