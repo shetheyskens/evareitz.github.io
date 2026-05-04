@@ -18,6 +18,15 @@ const projectsData = {
         softwares: "[illustrator] [photoshop]",
         images: ["images/war-on-screen-1.png", "images/war-on-screen-2.png"]
     },
+        rapportdestage: {
+        title: "Rapport de stage",
+        year: "2026",
+        categories: ["books"],
+        description: "L'équipe WOS vous invite à réfléchir à la nouvelle identité visuelle du festival à travers la création de l'affiche de la 14e édition. Elle sera exposée lors de l'édition 2026.",
+        intention: "L'affiche interroge le pouvoir de l'image comme acte de mémoire, capable d'immortaliser des vies menacées de disparition. La joie et l'innocence des enfants, figées dans la lumière de la projection, subsistent face à un effacement progressif suggéré par les particules.",
+        softwares: "[illustrator] [photoshop]",
+        images: ["images/rds-1.2.png", "images/war-on-screen-2.png"]
+    },
     voixdestras: {
         title: "Voix de Strasbourg",
         year: "2026",
@@ -30,7 +39,7 @@ const projectsData = {
         year: "2026",
         categories: ["branding"],
         description: "Une start-up lance un nouveau coffret de café comprenant tous les objets et produits pour vivre une découverte gustative personnalisé.",
-        intention: "Dans un contexte de surconsommation, le projet valorise l’artisanat et l’imperfection en s’inspirant des philosophies Mingei et Wabi-sabi. C mon café place le client au centre de la création de son mélange, faisant de chaque café un objet unique, humain et accessible.",
+        intention: "Dans un contexte de surconsommation, le projet valorise l'artisanat et l'imperfection en s'inspirant des philosophies Mingei et Wabi-sabi. C mon café place le client au centre de la création de son mélange, faisant de chaque café un objet unique, humain et accessible.",
         softwares: "[blender] [photoshop] [illustrator]",
         images: ["images/c-mon-café-2.png"]
     },
@@ -38,8 +47,8 @@ const projectsData = {
         title: "Pas Pressé",
         year: "2026",
         categories: ["branding"],
-        description: "Création de l’identité visuelle ainsi que de la modélisation.",
-        intention: "Le design des bouteilles s’inspire des contenants médicaux pour inspirer confiance et légitimité, privilégiant un visuel d’expertise et de rigueur.",
+        description: "Création de l'identité visuelle ainsi que de la modélisation.",
+        intention: "Le design des bouteilles s'inspire des contenants médicaux pour inspirer confiance et légitimité, privilégiant un visuel d'expertise et de rigueur.",
         softwares: "[blender] [photoshop] [illustrator]",
         images: ["images/pas-pressé-1.png"]
     },
@@ -68,7 +77,7 @@ const projectsData = {
         title: "Ola Radio",
         year: "2025",
         categories: ["web"],
-        description: "Adaptation d’un site web déjà existant dans un format responsive. Choix porté sur Ola Radio, une webradio indépendante marseillaise portée spécialisée dans la musique électronique.",
+        description: "Adaptation d'un site web déjà existant dans un format responsive. Choix porté sur Ola Radio, une webradio indépendante marseillaise portée spécialisée dans la musique électronique.",
         softwares: "[figma]",
         images: ["images/ola-radio-2.png"]
     },
@@ -89,7 +98,7 @@ const projectsData = {
         title: "Fragile",
         year: "2025",
         categories: ["photography", "posters"],
-        description: "Une exposition organisée par La Chambre en collaboration avec Eva Reitz. Fragile rassemble une série de photographies autour de la fragilité, où se croisent plumes, tissu déchiré et corps figé. Les images captent des instant où chaque matière semble sur le point de se rompre, de tomber ou de disparaître. Tout ici parle d’équilibres instables, d’apparitions brèves, de formes abîmées. L’exposition parle d’équilibres instables, d’apparitions brèves, de formes abîmées.",
+        description: "Une exposition organisée par La Chambre en collaboration avec Eva Reitz. Fragile rassemble une série de photographies autour de la fragilité, où se croisent plumes, tissu déchiré et corps figé. Les images captent des instant où chaque matière semble sur le point de se rompre, de tomber ou de disparaître. Tout ici parle d'équilibres instables, d'apparitions brèves, de formes abîmées. L'exposition parle d'équilibres instables, d'apparitions brèves, de formes abîmées.",
         images: ["images/Screenshot 2026-02-23 at 10.37.32.png"]
     },
     lampe: {
@@ -97,7 +106,7 @@ const projectsData = {
         mediums: "metal",
         year: "2024",
         categories: ["photography"],
-        description: "Fortement inspirée par le mouvement brutaliste, j’ai concu ma lampe avec une forme rappelant celle des poteaux électriques.",
+        description: "Fortement inspirée par le mouvement brutaliste, j'ai concu ma lampe avec une forme rappelant celle des poteaux électriques.",
         softwares: "[indesign] [photoshop] [blender]",
         images: ["images/sarai-fenrings-1.jpg"]
     },
@@ -105,7 +114,7 @@ const projectsData = {
         title: "Mix",
         year: "2024",
         categories: ["photography"],
-        description: "Shooting pour une cover d’un DJ set de cinq DJ strasbourgeois dans lequel j’ai joué le rôle d’assistante lumière et de créatrice de contenu pour les réseaux sociaux.",
+        description: "Shooting pour une cover d'un DJ set de cinq DJ strasbourgeois dans lequel j'ai joué le rôle d'assistante lumière et de créatrice de contenu pour les réseaux sociaux.",
         softwares: "[figma]",
         images: ["images/sarai-fenrings-1.jpg"]
     }
@@ -113,20 +122,18 @@ const projectsData = {
 
 let currentProject = null;
 let currentImageIndex = 0;
-let currentFilter = 'all'; // Filtre actuel
+let currentFilter = 'all';
+let isPinned = false; // Nouveau : savoir si on a cliqué pour "épingler" l'info
 
 //■■■ SYSTÈME DE FILTRE ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-
 function filterProjects(category) {
     currentFilter = category;
 
-    // Mettre à jour les boutons actifs
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.classList.remove('active');
     });
     document.querySelector(`[data-category="${category}"]`).classList.add('active');
 
-    // Filtrer les images du carousel
     const allImages = document.querySelectorAll('.projects-preview');
 
     allImages.forEach(img => {
@@ -141,13 +148,18 @@ function filterProjects(category) {
     });
 }
 
-function showInfo(projectId) {
+//■■■ AFFICHAGE DES INFOS ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+function showInfo(projectId, isClick = false) {
     const project = projectsData[projectId];
     
-    // Vérifier si le projet existe
     if (!project) {
         console.error('Projet non trouvé:', projectId);
         return;
+    }
+    
+    // Si c'est un clic, on épingle l'info
+    if (isClick) {
+        isPinned = true;
     }
     
     const infoDiv = document.getElementById('project-info');
@@ -155,18 +167,15 @@ function showInfo(projectId) {
     
     currentProject = projectId;
     
-    // ■■■ NOUVELLE PARTIE : Gérer l'état actif des images ■■■
-    // Retirer la classe active de toutes les images
+    // Gérer l'état actif des images
     document.querySelectorAll('.projects-preview').forEach(img => {
         img.classList.remove('active');
     });
     
-    // Ajouter la classe active à l'image cliquée
-    const clickedImage = document.querySelector(`[data-project-id="${projectId}"]`);
-    if (clickedImage) {
-        clickedImage.classList.add('active');
+    const selectedImage = document.querySelector(`[data-project-id="${projectId}"]`);
+    if (selectedImage) {
+        selectedImage.classList.add('active');
     }
-    // ■■■ FIN NOUVELLE PARTIE ■■■
     
     // Remplir les infos
     const titleElement = document.getElementById('info-title');
@@ -198,6 +207,64 @@ function showInfo(projectId) {
     infoDiv.classList.add('active');
     imagesContainer.classList.add('active');
 }
+
+function hideInfo() {
+    // Ne cacher que si ce n'est pas épinglé
+    if (!isPinned) {
+        document.getElementById('project-info').classList.remove('active');
+        document.getElementById('info-images').classList.remove('active');
+        
+        document.querySelectorAll('.projects-preview').forEach(img => {
+            img.classList.remove('active');
+        });
+    }
+}
+
+// Ajouter les événements hover et click
+document.addEventListener('DOMContentLoaded', () => {
+    const projectImages = document.querySelectorAll('.projects-preview');
+    
+    projectImages.forEach(img => {
+        // Hover : afficher temporairement
+        img.addEventListener('mouseenter', () => {
+            if (!isPinned) { // Seulement si pas épinglé
+                const projectId = img.getAttribute('data-project-id');
+                if (projectId) {
+                    showInfo(projectId, false);
+                }
+            }
+        });
+        
+img.addEventListener('mouseleave', () => {
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox.classList.contains('active')) {
+        hideInfo();
+    }
+});
+        
+// Click : afficher les infos + ouvrir la lightbox
+img.addEventListener('click', () => {
+    const projectId = img.getAttribute('data-project-id');
+    if (projectId) {
+        showInfo(projectId);
+        currentProject = projectId;
+        currentImageIndex = 0;
+        openLightbox(0);
+    }
+});
+    });
+    
+    // Cliquer en dehors pour désépingler
+    document.addEventListener('click', (e) => {
+        if (!e.target.classList.contains('projects-preview') && 
+            !document.getElementById('project-info').contains(e.target) &&
+            !document.getElementById('info-images').contains(e.target)) {
+            
+            isPinned = false;
+            hideInfo();
+        }
+    });
+});
 
 //■■■ LIGHTBOX ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 function openLightbox(imageIndex) {
@@ -235,9 +302,20 @@ function changeImage(direction) {
     document.getElementById('lightbox-image').src = project.images[currentImageIndex];
 }
 
-document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
-document.querySelector('.lightbox-prev').addEventListener('click', () => changeImage(-1));
-document.querySelector('.lightbox-next').addEventListener('click', () => changeImage(1));
+document.querySelector('.lightbox-close').addEventListener('click', (e) => {
+    e.stopPropagation();
+    closeLightbox();
+});
+
+document.querySelector('.lightbox-prev').addEventListener('click', (e) => {
+    e.stopPropagation();
+    changeImage(-1);
+});
+
+document.querySelector('.lightbox-next').addEventListener('click', (e) => {
+    e.stopPropagation();
+    changeImage(1);
+});
 
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeLightbox();
@@ -249,30 +327,13 @@ document.getElementById('lightbox').addEventListener('click', (e) => {
     if (e.target.id === 'lightbox') closeLightbox();
 });
 
-// Fermer les infos en cliquant ailleurs
-document.addEventListener('click', (e) => {
-    if (!e.target.classList.contains('projects-preview') && 
-        !document.getElementById('project-info').contains(e.target) &&
-        !document.getElementById('info-images').contains(e.target)) {
-        
-        // Fermer les panneaux d'info
-        document.getElementById('project-info').classList.remove('active');
-        document.getElementById('info-images').classList.remove('active');
-        
-        // ■■■ NOUVEAU : Retirer l'état actif de toutes les images ■■■
-        document.querySelectorAll('.projects-preview').forEach(img => {
-            img.classList.remove('active');
-        });
-    }
-});
-
 //■■■ P5.JS ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 function setup() {
     let canvas = createCanvas(windowWidth, windowHeight);
     canvas.position(0, 0);
     canvas.style('z-index', '-1');
-    strokeWeight(0.5);
-    stroke(0);
+    strokeWeight(0.75);
+    stroke('#ff6363');
 }
 
 function draw() {

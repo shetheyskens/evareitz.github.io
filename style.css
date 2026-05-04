@@ -53,14 +53,14 @@ html {
 
 @font-face {
     font-family: 'exposure';
-    src: url('fonts/ExposureTrial.otf') format('opentype');
+    src: url('fonts/DINdong.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'inter';
-    src: url('fonts/Inter_18pt-Regular.ttf') format('truetype');
+    font-family: 'DINdong';
+    src: url('fonts/DINdong.otf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -87,7 +87,7 @@ body {
     align-items: center;
     padding: 20px 40px;
     z-index: 10000;
-    font-family: 'inter';
+    font-family: 'DINdong';
 }
 
 .nav-left .logo {
@@ -108,7 +108,7 @@ body {
 
 .nav-right a {
     text-decoration: underline;
-    color: #000;
+    color: #949499;
     font-size: 0.875rem;
     /* 14px → fluide (14-17.5px) */
     transition: opacity 0.3s;
@@ -204,7 +204,7 @@ hr {
     left: 0;
     width: 100%;
     border: none;
-    border-top: 0.5px solid #000;
+    border-top: 0.5px solid #949499;
     transform: translateY(-50%);
     margin: 0;
 }
@@ -281,7 +281,7 @@ hr {
     left: 20px;
     max-width: 45%;
     padding: 20px;
-    z-index: 2000;
+    z-index: 10002;
     opacity: 0;
     transform: translateY(20px);
     transition: all 0.3s ease;
@@ -301,10 +301,11 @@ hr {
 }
 
 .info-text p {
+    color:#949499;
     margin: 5px 0;
     font-size: 0.875rem;
     /* 14px → fluide (14-17.5px) */
-    font-family: 'inter', Arial, sans-serif;
+    font-family: 'DINdong', Arial, sans-serif;
 }
 
 .info-softwares {
@@ -312,6 +313,7 @@ hr {
 }
 
 .info-text br {
+    color:#949499;
     content: "";
     display: block;
     margin: 12px 0; /* Espace autour du br */
@@ -327,7 +329,7 @@ hr {
     align-items: flex-end;
     gap: 10px;
     max-width: 45%; /* Limite à 45% de la largeur de l'écran */
-    z-index: 2000;
+    z-index: 10002;
     opacity: 0;
     transform: translateY(20px);
     transition: all 0.3s ease;
@@ -370,9 +372,10 @@ hr {
 }
 
 #lightbox-image {
-    max-width: 70%;
-    max-height: 70%;
+    max-width: 65%;
+    max-height: 65%;
     object-fit: contain;
+    margin-bottom: 15vh;
 }
 
 .lightbox-close {
@@ -395,10 +398,9 @@ hr {
 .lightbox-next {
     position: absolute;
     text-decoration: underline;
-    top: 50%;
+    top: calc(50% - 7.5vh);
     transform: translateY(-50%);
     font-size: 1.5625rem;
-    /* 25px → fluide (25-31.25px) */
     color: #000;
     cursor: pointer;
     padding: 20px;
@@ -435,7 +437,7 @@ hr {
     background: transparent;
     border: none;
     padding: 8px 16px;
-    font-family: 'inter', Arial, sans-serif;
+    font-family: 'DINdong', Arial, sans-serif;
     font-size: 0.875rem;
     cursor: pointer;
     transition: all 0.3s;
@@ -547,11 +549,11 @@ hr {
 .window-title {
     font-size: 0.875rem;
     font-weight: normal;
-    font-family: 'inter';
+    font-family: 'DINdong';
 }
 
 .window-close {
-    font-family: 'inter';
+    font-family: 'DINdong';
     font-size: 0.875rem;
     color: #000;
     text-decoration: underline;
@@ -606,7 +608,7 @@ hr {
     border: 0px;
     background: transparent;
     cursor: pointer;
-    font-family: 'inter';
+    font-family: 'DINdong';
     font-size: 0.875rem;
     transition: all 0.3s;
     padding: 0;
