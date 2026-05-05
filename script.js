@@ -18,6 +18,16 @@ const projectsData = {
         softwares: "[illustrator] [photoshop]",
         images: ["images/war-on-screen-1.png", "images/war-on-screen-2.png"]
     },
+    lablancheophelia: {
+        title: "La Blanche Ophélia",
+        year: "2026",
+        categories: ["books"],
+        description: "Concevoir et relier un ouvrage par le pliage",
+        intention: "Conception d'un dépliant sur la base du poème Ophélia de Rimbaud. Les photographies de rivières sont là pour illustrer les derniers instants de la jeune femme. Les images ont été éditées de telle sorte à souligner la dimension romantique du poème.",
+        softwares: "Photographie, Conception Graphique, Mise en page, Façonnage",
+        format: "A6, 400 x 250 mm",
+        images: ["images/lbo-1.png", "images/lbo-2.png", "images/lbo-3.png", "images/lbo-4.png", "images/lbo-5.png"]
+    },
         rapportdestage: {
         title: "Rapport de stage",
         year: "2026",
@@ -123,7 +133,7 @@ const projectsData = {
 let currentProject = null;
 let currentImageIndex = 0;
 let currentFilter = 'all';
-let isPinned = false; // Nouveau : savoir si on a cliqué pour "épingler" l'info
+let isClicked = false;
 
 //■■■ SYSTÈME DE FILTRE ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 function filterProjects(category) {
@@ -149,50 +159,33 @@ function filterProjects(category) {
 }
 
 //■■■ AFFICHAGE DES INFOS ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-function showInfo(projectId, isClick = false) {
+function showInfo(projectId) {
     const project = projectsData[projectId];
-    
+
     if (!project) {
         console.error('Projet non trouvé:', projectId);
         return;
     }
-    
-    // Si c'est un clic, on épingle l'info
-    if (isClick) {
-        isPinned = true;
-    }
-    
+
     const infoDiv = document.getElementById('project-info');
     const imagesContainer = document.getElementById('info-images');
-    
+
     currentProject = projectId;
-    
-    // Gérer l'état actif des images
+
     document.querySelectorAll('.projects-preview').forEach(img => {
         img.classList.remove('active');
     });
-    
+
     const selectedImage = document.querySelector(`[data-project-id="${projectId}"]`);
-    if (selectedImage) {
-        selectedImage.classList.add('active');
-    }
-    
-    // Remplir les infos
-    const titleElement = document.getElementById('info-title');
-    const mediumsElement = document.getElementById('info-mediums');
-    const yearElement = document.getElementById('info-year');
-    const descElement = document.getElementById('info-description');
-    const intentionElement = document.getElementById('info-intention');
-    const softwaresElement = document.getElementById('info-softwares');
-    
-    if (titleElement) titleElement.textContent = project.title || '';
-    if (mediumsElement) mediumsElement.textContent = project.mediums || '';
-    if (yearElement) yearElement.textContent = project.year || '';
-    if (descElement) descElement.textContent = project.description || '';
-    if (intentionElement) intentionElement.textContent = project.intention || '';
-    if (softwaresElement) softwaresElement.textContent = project.softwares || '';
-    
-    // Remplir les images
+    if (selectedImage) selectedImage.classList.add('active');
+
+    if (document.getElementById('info-title')) document.getElementById('info-title').textContent = project.title || '';
+    if (document.getElementById('info-mediums')) document.getElementById('info-mediums').textContent = project.mediums || '';
+    if (document.getElementById('info-year')) document.getElementById('info-year').textContent = project.year || '';
+    if (document.getElementById('info-description')) document.getElementById('info-description').textContent = project.description || '';
+    if (document.getElementById('info-intention')) document.getElementById('info-intention').textContent = project.intention || '';
+    if (document.getElementById('info-softwares')) document.getElementById('info-softwares').textContent = project.softwares || '';
+
     imagesContainer.innerHTML = '';
     if (project.images && project.images.length > 0) {
         project.images.forEach((imgSrc, index) => {
@@ -203,65 +196,79 @@ function showInfo(projectId, isClick = false) {
             imagesContainer.appendChild(img);
         });
     }
-    
+
     infoDiv.classList.add('active');
     imagesContainer.classList.add('active');
 }
 
-function hideInfo() {
-    // Ne cacher que si ce n'est pas épinglé
-    if (!isPinned) {
-        document.getElementById('project-info').classList.remove('active');
-        document.getElementById('info-images').classList.remove('active');
-        
-        document.querySelectorAll('.projects-preview').forEach(img => {
-            img.classList.remove('active');
-        });
-    }
-}
-
-// Ajouter les événements hover et click
+//■■■ EVENTS HOVER ET CLICK ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 document.addEventListener('DOMContentLoaded', () => {
     const projectImages = document.querySelectorAll('.projects-preview');
-    
+    const infoDiv = document.getElementById('project-info');
+
+    // Tooltip qui suit le curseur (bloqué si isClicked)
+    document.addEventListener('mousemove', (e) => {
+        if (!isClicked) {
+            infoDiv.style.left = (e.clientX + 16) + 'px';
+            infoDiv.style.top = (e.clientY + 16) + 'px';
+            infoDiv.style.bottom = '';
+        }
+    });
+
     projectImages.forEach(img => {
-        // Hover : afficher temporairement
+
+        // Hover : titre + année uniquement
         img.addEventListener('mouseenter', () => {
-            if (!isPinned) { // Seulement si pas épinglé
+            if (!isClicked && !document.getElementById('lightbox').classList.contains('active')) {
                 const projectId = img.getAttribute('data-project-id');
-                if (projectId) {
-                    showInfo(projectId, false);
-                }
+                const project = projectsData[projectId];
+                if (!project) return;
+
+                document.getElementById('info-title').textContent = project.title || '';
+                document.getElementById('info-year').textContent = project.year || '';
+                document.getElementById('info-description').textContent = '';
+                document.getElementById('info-intention').textContent = '';
+                document.getElementById('info-softwares').textContent = '';
+                document.getElementById('info-mediums').textContent = '';
+
+                infoDiv.classList.add('active');
             }
         });
-        
-img.addEventListener('mouseleave', () => {
-    const lightbox = document.getElementById('lightbox');
-    if (!lightbox.classList.contains('active')) {
-        hideInfo();
-    }
-});
-        
-// Click : afficher les infos + ouvrir la lightbox
-img.addEventListener('click', () => {
-    const projectId = img.getAttribute('data-project-id');
-    if (projectId) {
-        showInfo(projectId);
-        currentProject = projectId;
-        currentImageIndex = 0;
-        openLightbox(0);
-    }
-});
+
+        img.addEventListener('mouseleave', () => {
+            if (!isClicked && !document.getElementById('lightbox').classList.contains('active')) {
+                infoDiv.classList.remove('active');
+            }
+        });
+
+        // Click : description complète fixée en bas à gauche + lightbox
+        img.addEventListener('click', () => {
+            const projectId = img.getAttribute('data-project-id');
+            if (!projectId) return;
+
+            isClicked = true;
+
+            showInfo(projectId);
+
+            infoDiv.style.left = '20px';
+            infoDiv.style.top = 'auto';
+            infoDiv.style.bottom = '20px';
+
+            currentProject = projectId;
+            currentImageIndex = 0;
+            openLightbox(0);
+        });
     });
-    
-    // Cliquer en dehors pour désépingler
+
+    // Cliquer en dehors : réinitialiser
     document.addEventListener('click', (e) => {
-        if (!e.target.classList.contains('projects-preview') && 
-            !document.getElementById('project-info').contains(e.target) &&
-            !document.getElementById('info-images').contains(e.target)) {
-            
-            isPinned = false;
-            hideInfo();
+        if (!e.target.classList.contains('projects-preview') &&
+            !document.getElementById('lightbox').contains(e.target)) {
+            isClicked = false;
+            infoDiv.classList.remove('active');
+            infoDiv.style.left = '';
+            infoDiv.style.bottom = '';
+            infoDiv.style.top = '';
         }
     });
 });
@@ -283,6 +290,21 @@ function openLightbox(imageIndex) {
 
 function closeLightbox() {
     document.getElementById('lightbox').classList.remove('active');
+    isClicked = false;
+    document.getElementById('info-description').textContent = '';
+    document.getElementById('info-intention').textContent = '';
+    document.getElementById('info-softwares').textContent = '';
+    document.getElementById('info-mediums').textContent = '';
+    document.getElementById('info-title').textContent = '';
+    document.getElementById('info-year').textContent = '';
+    document.getElementById('project-info').classList.remove('active');
+    document.getElementById('project-info').style.bottom = '';
+    document.getElementById('project-info').style.left = '';
+    document.getElementById('project-info').style.top = '';
+    document.getElementById('info-images').classList.remove('active');
+    document.querySelectorAll('.projects-preview').forEach(img => {
+        img.classList.remove('active');
+    });
 }
 
 function changeImage(direction) {
@@ -345,3 +367,6 @@ function keyPressed() {
         background(255);
     }
 }
+
+
+
