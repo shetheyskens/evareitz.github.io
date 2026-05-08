@@ -25,10 +25,9 @@ const projectsData = {
         description: "Concevoir et relier un ouvrage par le pliage",
         intention: "Conception d'un dépliant sur la base du poème Ophélia de Rimbaud. Les photographies de rivières sont là pour illustrer les derniers instants de la jeune femme. Les images ont été éditées de telle sorte à souligner la dimension romantique du poème.",
         softwares: "Photographie, Conception Graphique, Mise en page, Façonnage",
-        format: "A6, 400 x 250 mm",
         images: ["images/lbo-1.png", "images/lbo-2.png", "images/lbo-3.png", "images/lbo-4.png", "images/lbo-5.png"]
     },
-        rapportdestage: {
+    rapportdestage: {
         title: "Rapport de stage",
         year: "2026",
         categories: ["books"],
@@ -108,7 +107,7 @@ const projectsData = {
         title: "Fragile",
         year: "2025",
         categories: ["photography", "posters"],
-        description: "Une exposition organisée par La Chambre en collaboration avec Eva Reitz. Fragile rassemble une série de photographies autour de la fragilité, où se croisent plumes, tissu déchiré et corps figé. Les images captent des instant où chaque matière semble sur le point de se rompre, de tomber ou de disparaître. Tout ici parle d'équilibres instables, d'apparitions brèves, de formes abîmées. L'exposition parle d'équilibres instables, d'apparitions brèves, de formes abîmées.",
+        description: "Une exposition organisée par La Chambre en collaboration avec Eva Reitz. Fragile rassemble une série de photographies autour de la fragilité, où se croisent plumes, tissu déchiré et corps figé. Les images captent des instant où chaque matière semble sur le point de se rompre, de tomber ou de disparaître. Tout ici parle d'équilibres instables, d'apparitions brèves, de formes abîmées.",
         images: ["images/Screenshot 2026-02-23 at 10.37.32.png"]
     },
     lampe: {
@@ -144,16 +143,15 @@ function filterProjects(category) {
     });
     document.querySelector(`[data-category="${category}"]`).classList.add('active');
 
-    const allImages = document.querySelectorAll('.projects-preview');
-
-    allImages.forEach(img => {
+    const allWrappers = document.querySelectorAll('.project-preview-wrapper');
+    allWrappers.forEach(wrapper => {
+        const img = wrapper.querySelector('.projects-preview');
         const projectId = img.getAttribute('data-project-id');
         const project = projectsData[projectId];
-
-        if (category === 'all' || (project.categories && project.categories.includes(category))) {
-            img.style.display = 'block';
+        if (category === 'all' || (project && project.categories && project.categories.includes(category))) {
+            wrapper.style.display = 'block';
         } else {
-            img.style.display = 'none';
+            wrapper.style.display = 'none';
         }
     });
 }
@@ -161,7 +159,6 @@ function filterProjects(category) {
 //■■■ AFFICHAGE DES INFOS ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 function showInfo(projectId) {
     const project = projectsData[projectId];
-
     if (!project) {
         console.error('Projet non trouvé:', projectId);
         return;
@@ -201,12 +198,73 @@ function showInfo(projectId) {
     imagesContainer.classList.add('active');
 }
 
-//■■■ EVENTS HOVER ET CLICK ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-document.addEventListener('DOMContentLoaded', () => {
-    const projectImages = document.querySelectorAll('.projects-preview');
+//■■■ PLACEMENT ET EVENTS ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+window.addEventListener('load', () => {
     const infoDiv = document.getElementById('project-info');
+    const wrappers = document.querySelectorAll('.project-preview-wrapper');
 
-    // Tooltip qui suit le curseur (bloqué si isClicked)
+    // Grille aléatoire 5x3
+    const cols = 5;
+    const rows = 3;
+    const cellW = window.innerWidth / cols;
+    const cellH = window.innerHeight / rows;
+    const shuffled = Array.from(wrappers).sort(() => Math.random() - 0.5);
+
+    shuffled.forEach((wrapper, i) => {
+        if (i >= cols * rows) return;
+        const col = i % cols;
+        const row = Math.floor(i / cols);
+        const img = wrapper.querySelector('.projects-preview');
+        const maxSize = Math.min(cellW, cellH) * 0.6;
+        const size = maxSize * (0.5 + Math.random() * 0.5);
+        img.style.width = size + 'px';
+        const padding = 20;
+        const x = col * cellW + padding + Math.random() * (cellW - size - padding * 2);
+        const y = row * cellH + padding + Math.random() * (cellH - size - padding * 2);
+        wrapper.style.left = x + 'px';
+        wrapper.style.top = y + 'px';
+    });
+
+    // Hover + click sur chaque wrapper
+    wrappers.forEach(wrapper => {
+        const img = wrapper.querySelector('.projects-preview');
+
+        wrapper.addEventListener('mouseenter', () => {
+            if (!isClicked && !document.getElementById('lightbox').classList.contains('active')) {
+                const projectId = img.getAttribute('data-project-id');
+                const project = projectsData[projectId];
+                if (!project) return;
+                document.getElementById('info-title').textContent = project.title || '';
+                document.getElementById('info-year').textContent = project.year || '';
+                document.getElementById('info-description').textContent = '';
+                document.getElementById('info-intention').textContent = '';
+                document.getElementById('info-softwares').textContent = '';
+                document.getElementById('info-mediums').textContent = '';
+                infoDiv.classList.add('active');
+            }
+        });
+
+        wrapper.addEventListener('mouseleave', () => {
+            if (!isClicked && !document.getElementById('lightbox').classList.contains('active')) {
+                infoDiv.classList.remove('active');
+            }
+        });
+
+        wrapper.addEventListener('click', () => {
+            const projectId = img.getAttribute('data-project-id');
+            if (!projectId) return;
+            isClicked = true;
+            showInfo(projectId);
+            infoDiv.style.left = '20px';
+            infoDiv.style.top = 'auto';
+            infoDiv.style.bottom = '20px';
+            currentProject = projectId;
+            currentImageIndex = 0;
+            openLightbox(0);
+        });
+    });
+
+    // Tooltip suit le curseur
     document.addEventListener('mousemove', (e) => {
         if (!isClicked) {
             infoDiv.style.left = (e.clientX + 16) + 'px';
@@ -215,54 +273,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    projectImages.forEach(img => {
-
-        // Hover : titre + année uniquement
-        img.addEventListener('mouseenter', () => {
-            if (!isClicked && !document.getElementById('lightbox').classList.contains('active')) {
-                const projectId = img.getAttribute('data-project-id');
-                const project = projectsData[projectId];
-                if (!project) return;
-
-                document.getElementById('info-title').textContent = project.title || '';
-                document.getElementById('info-year').textContent = project.year || '';
-                document.getElementById('info-description').textContent = '';
-                document.getElementById('info-intention').textContent = '';
-                document.getElementById('info-softwares').textContent = '';
-                document.getElementById('info-mediums').textContent = '';
-
-                infoDiv.classList.add('active');
-            }
-        });
-
-        img.addEventListener('mouseleave', () => {
-            if (!isClicked && !document.getElementById('lightbox').classList.contains('active')) {
-                infoDiv.classList.remove('active');
-            }
-        });
-
-        // Click : description complète fixée en bas à gauche + lightbox
-        img.addEventListener('click', () => {
-            const projectId = img.getAttribute('data-project-id');
-            if (!projectId) return;
-
-            isClicked = true;
-
-            showInfo(projectId);
-
-            infoDiv.style.left = '20px';
-            infoDiv.style.top = 'auto';
-            infoDiv.style.bottom = '20px';
-
-            currentProject = projectId;
-            currentImageIndex = 0;
-            openLightbox(0);
-        });
-    });
-
     // Cliquer en dehors : réinitialiser
     document.addEventListener('click', (e) => {
-        if (!e.target.classList.contains('projects-preview') &&
+        if (!e.target.closest('.project-preview-wrapper') &&
             !document.getElementById('lightbox').contains(e.target)) {
             isClicked = false;
             infoDiv.classList.remove('active');
@@ -276,14 +289,11 @@ document.addEventListener('DOMContentLoaded', () => {
 //■■■ LIGHTBOX ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 function openLightbox(imageIndex) {
     if (!currentProject) return;
-
     const project = projectsData[currentProject];
     if (!project.images || project.images.length === 0) return;
-
     currentImageIndex = imageIndex;
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightbox-image');
-
     lightboxImage.src = project.images[currentImageIndex];
     lightbox.classList.add('active');
 }
@@ -309,18 +319,14 @@ function closeLightbox() {
 
 function changeImage(direction) {
     if (!currentProject) return;
-
     const project = projectsData[currentProject];
     if (!project.images || project.images.length === 0) return;
-
     currentImageIndex += direction;
-
     if (currentImageIndex < 0) {
         currentImageIndex = project.images.length - 1;
     } else if (currentImageIndex >= project.images.length) {
         currentImageIndex = 0;
     }
-
     document.getElementById('lightbox-image').src = project.images[currentImageIndex];
 }
 
@@ -367,6 +373,3 @@ function keyPressed() {
         background(255);
     }
 }
-
-
-

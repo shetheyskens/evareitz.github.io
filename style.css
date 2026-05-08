@@ -1,20 +1,20 @@
 /*■■■ RESPONSIVE FONTS ■■■■■■■■■■■■■■■■■■■■■■■■■■■■*/
 
 html {
-    font-size: 18px;
+    font-size: 20px; /* était 18px */
     overflow-x: hidden;
 }
 
 @media screen and (min-width: 20em) {
-    html { font-size: calc(18px + (18 - 18) * ((100vw - 320px) / (400 - 320))); }
+    html { font-size: calc(20px + (20 - 20) * ((100vw - 320px) / (400 - 320))); }
 }
 
 @media screen and (min-width: 25em) {
-    html { font-size: calc(18px + (16 - 18) * ((100vw - 400px) / (1200 - 400))); }
+    html { font-size: calc(20px + (18 - 20) * ((100vw - 400px) / (1200 - 400))); }
 }
 
 @media screen and (min-width: 75em) {
-    html { font-size: 16px; }
+    html { font-size: 18px; } /* était 16px */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -77,7 +77,7 @@ body {
 
 .nav-right a {
     text-decoration: underline;
-    color: #949499;
+    color: #ff6363;
     font-size: 0.875rem;
     transition: opacity 0.3s;
 }
@@ -123,60 +123,41 @@ body {
 }
 
 /*■■■ INDEX.html ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■*/
-hr {
-    position: absolute;
-    top: 50%; left: 0;
-    width: 100%;
-    border: none;
-    border-top: 0.5px solid #949499;
-    transform: translateY(-50%);
-    margin: 0;
+
+.board {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    overflow: hidden;
 }
 
-/*■■■ CAROUSEL ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■*/
-.carousel {
-    position: relative;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    min-height: 100vh;
-    width: 100%;
-    padding: 0 250px;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-    box-sizing: border-box;
-    scrollbar-width: thin;
-    scrollbar-color: #000 #f1f1f1;
+.project-preview-wrapper {
+    position: absolute;
+    cursor: pointer;
+}
+
+.project-preview-wrapper::after {
+    display: none;
 }
 
 .projects-preview {
-    width: 10%;
-    min-width: 250px;
+    display: block;
     height: auto;
-    opacity: 0.4;
-    /*margin-left: -110px;*/
-    filter: grayscale(1);
-    flex-shrink: 0;
+    opacity: 0.7;
     cursor: pointer;
     transition: opacity 0.3s;
+    user-select: none;
+    filter: grayscale(1);
 }
 
 .projects-preview:hover,
 .projects-preview.active {
-    width: 25%;
-    height: auto;
     opacity: 1;
-    /*margin-left: -110px;*/
     filter: grayscale(0);
-    z-index: 10000;
 }
-
-.carousel::-webkit-scrollbar { height: 10px; }
-.carousel::-webkit-scrollbar-track { background: #f1f1f1; }
-.carousel::-webkit-scrollbar-thumb { background: #000; border-radius: 5px; }
-.carousel::-webkit-scrollbar-thumb:hover { background: #555; }
 
 /*■■■ DESCRIPTIONS DES PROJETS ■■■■■■■■■■■■■■■■■■■■■*/
 .project-info {
@@ -195,6 +176,7 @@ hr {
     margin: 0;
     font-size: 0.875rem;
     font-family: 'DINdong', Arial, sans-serif;
+line-height: -1;
 }
 
 .info-softwares { opacity: 25%; }
@@ -204,6 +186,21 @@ hr {
     content: "";
     display: block;
     margin: 12px 0;
+}
+#info-title {
+    background: white;
+    display: inline;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    padding: 2px 4px;
+}
+
+#info-year {
+    background: white;
+    display: inline;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    padding: 2px 4px;
 }
 
 .info-images {
@@ -250,7 +247,7 @@ hr {
     text-decoration: underline;
     top: 30px; right: 50px;
     font-size: 1.5625rem;
-    color: #000;
+    color: #ff6363;
     cursor: pointer;
     z-index: 3001;
 }
@@ -263,7 +260,7 @@ hr {
     top: calc(50% - 7.5vh);
     transform: translateY(-50%);
     font-size: 1.5625rem;
-    color: #000;
+    color: #ff6363;
     cursor: pointer;
     padding: 20px;
     user-select: none;
@@ -289,7 +286,7 @@ hr {
     font-size: 0.875rem;
     cursor: pointer;
     transition: all 0.3s;
-    color: #000;
+    color: #ff6363;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -298,7 +295,7 @@ hr {
 .filter-btn::before {
     content: '';
     width: 8px; height: 8px;
-    border: 1px solid #000;
+    border: 1px solid #ff6363;
     border-radius: 30px;
     display: inline-block;
     transition: all 0.3s;
@@ -307,11 +304,11 @@ hr {
 
 .filter-btn:hover::before {
     background:
-        linear-gradient(45deg, transparent 45%, #000 45%, #000 55%, transparent 55%),
-        linear-gradient(-45deg, transparent 45%, #000 45%, #000 55%, transparent 55%);
+        linear-gradient(45deg, transparent 45%, #ff6363 45%, #ff6363 55%, transparent 55%),
+        linear-gradient(-45deg, transparent 45%, #ff6363 45%, #ff6363 55%, transparent 55%);
 }
 
-.filter-btn.active::before { background: #000; }
+.filter-btn.active::before { background: #ff6363; }
 .filter-btn:hover { opacity: 0.6; }
 
 /*■■■ POP-UP WINDOWS ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■*/
