@@ -203,28 +203,6 @@ window.addEventListener('load', () => {
     const infoDiv = document.getElementById('project-info');
     const wrappers = document.querySelectorAll('.project-preview-wrapper');
 
-    // Grille aléatoire 5x3
-    const cols = 5;
-    const rows = 3;
-    const cellW = window.innerWidth / cols;
-    const cellH = window.innerHeight / rows;
-    const shuffled = Array.from(wrappers).sort(() => Math.random() - 0.5);
-
-    shuffled.forEach((wrapper, i) => {
-        if (i >= cols * rows) return;
-        const col = i % cols;
-        const row = Math.floor(i / cols);
-        const img = wrapper.querySelector('.projects-preview');
-        const maxSize = Math.min(cellW, cellH) * 0.6;
-        const size = maxSize * (0.5 + Math.random() * 0.5);
-        img.style.width = size + 'px';
-        const padding = 20;
-        const x = col * cellW + padding + Math.random() * (cellW - size - padding * 2);
-        const y = row * cellH + padding + Math.random() * (cellH - size - padding * 2);
-        wrapper.style.left = x + 'px';
-        wrapper.style.top = y + 'px';
-    });
-
     // Hover + click sur chaque wrapper
     wrappers.forEach(wrapper => {
         const img = wrapper.querySelector('.projects-preview');
@@ -264,7 +242,6 @@ window.addEventListener('load', () => {
         });
     });
 
-    // Tooltip suit le curseur
     document.addEventListener('mousemove', (e) => {
         if (!isClicked) {
             infoDiv.style.left = (e.clientX + 16) + 'px';
@@ -273,7 +250,6 @@ window.addEventListener('load', () => {
         }
     });
 
-    // Cliquer en dehors : réinitialiser
     document.addEventListener('click', (e) => {
         if (!e.target.closest('.project-preview-wrapper') &&
             !document.getElementById('lightbox').contains(e.target)) {
