@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +7,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
     <nav class="navbar">
@@ -25,23 +23,19 @@
         </div>
     </nav>
 
-    <!-- ════════════════════════════════════
-         INTRO SERRURE / CLÉ
-         ════════════════════════════════════ -->
     <div id="intro-scene">
         <div id="door-left"></div>
         <div id="door-right"></div>
         <div id="lock-zone"></div>
         <div id="lock">
-            <img src="images/serrure.png" alt="serrure">
+            <img src="images/serrure4.png" alt="serrure">
         </div>
-        <div id="key-turning">
-            <img src="images/clé.png" alt="clé">
-        </div>
-        <div id="key-img">
-            <img src="images/clé.png" alt="clé">
-        </div>
+        <video id="door-video" src="images/porte.mov" muted playsinline preload="auto"></video>
         <div id="hint">Glisser la clé pour ouvrir</div>
+    </div>
+
+    <div id="key-img">
+        <img src="images/clé.png" alt="clé">
     </div>
 
     <div id="loading-screen">
@@ -49,7 +43,6 @@
         <div class="loading-text">Loading</div>
     </div>
 
-    <!-- ■■■ FILTRES - AJOUTEZ CETTE SECTION ■■■ -->
     <div class="filter-container">
         <button class="filter-btn active" data-category="all" onclick="filterProjects('all')">all</button>
         <button class="filter-btn" data-category="posters" onclick="filterProjects('posters')">posters</button>
@@ -63,7 +56,6 @@
         <button class="filter-btn" data-category="experimentations" onclick="filterProjects('experimentations')">experimentations</button>
     </div>
 
-    <!-- Pop-up Contact -->
     <div id="contact-popup" class="window-popup-contact">
         <div class="window-container-contact">
             <div class="window-header">
@@ -76,21 +68,17 @@
                 <p>Instagram: <a href="https://instagram.com/__safegard" target="_blank">@__safegard</a></p>
                 <p>Téléphone: +33 6 59 13 47 07</p>
                 <p>Localisation: Strasbourg, France</p>
-    </div>
-    <div class="window-footer">
-        <button id="reset-contact-messy" class="reset-button">reset</button>
-    </div>
-</div>
-
+            </div>
+            <div class="window-footer">
+                <button id="reset-contact-messy" class="reset-button">reset</button>
+            </div>
             <div class="resize-handle top-left"></div>
-<div class="resize-handle top-right"></div>
-<div class="resize-handle bottom-left"></div>
-<div class="resize-handle bottom-right"></div>
-
+            <div class="resize-handle top-right"></div>
+            <div class="resize-handle bottom-left"></div>
+            <div class="resize-handle bottom-right"></div>
         </div>
     </div>
 
-    <!-- Pop-up about -->
     <div id="about-popup" class="window-popup-about">
         <div class="window-container-about">
             <div class="window-header">
@@ -99,65 +87,57 @@
             </div>
             <div class="window-content">
                 <p>Je souhaite travailler en relation étroite avec les territoires et les écosystèmes qui m'accueillent. Je ne peux envisager d'appliquer des « recettes » graphiques, ni penser la communication culturelle à travers des logiques publicitaires. Je souhaite un graphisme contemporain honnête, pluriel, inclusif et généreux, qui s'interroge sur ses formes de diffusions et de transmissions dans l'espace public. Je considère que cette démarche s'étend au sujet bien plus vaste de l'habitation et des formes de partages.</p>
-    </div>
-    <div class="window-footer">
-        <button id="reset-about-messy" class="reset-button">reset</button>
-    </div>
-</div>
-
-
-<div class="resize-handle top-right"></div>
-<div class="resize-handle bottom-left"></div>
-<div class="resize-handle bottom-right"></div>
-
+            </div>
+            <div class="window-footer">
+                <button id="reset-about-messy" class="reset-button">reset</button>
+            </div>
+            <div class="resize-handle top-right"></div>
+            <div class="resize-handle bottom-left"></div>
+            <div class="resize-handle bottom-right"></div>
         </div>
     </div>
 
-
-
-
-    <!-- PROJECTS - AJOUTEZ data-project-id sur CHAQUE image -->
     <div class="board">
-    <div class="project-preview-wrapper">
-        <img src="images/Femmes-de-cinema-image-7.png" data-project-id="femmesdecinema" alt="Femmes de cinema" class="projects-preview">
+        <div class="project-preview-wrapper">
+            <img src="images/Femmes-de-cinema-image-7.png" data-project-id="femmesdecinema" alt="Femmes de cinema" class="projects-preview">
+        </div>
+        <div class="project-preview-wrapper">
+            <img src="images/war-on-screen-1.png" data-project-id="waronscreen" alt="war on screen" class="projects-preview">
+        </div>
+        <div class="project-preview-wrapper">
+            <img src="images/rds-3.png" data-project-id="rapportdestage" alt="rapport de stage" class="projects-preview">
+        </div>
+        <div class="project-preview-wrapper">
+            <img src="images/voix-de-stras-1.png" data-project-id="voixdestras" alt="voix de stras" class="projects-preview">
+        </div>
+        <div class="project-preview-wrapper">
+            <img src="images/c-mon-cafe-5.png" data-project-id="cmoncafe" alt="c mon café" class="projects-preview">
+        </div>
+        <div class="project-preview-wrapper">
+            <img src="images/lampe-1.png" data-project-id="lampe" alt="lampe" class="projects-preview">
+        </div>
+        <div class="project-preview-wrapper">
+            <img src="images/ornement-1.jpg" data-project-id="ornement" alt="ornement" class="projects-preview">
+        </div>
+        <div class="project-preview-wrapper">
+            <img src="images/datamoshing-2.jpg" data-project-id="datamoshing" alt="datamoshing" class="projects-preview">
+        </div>
+        <div class="project-preview-wrapper">
+            <img src="images/datamoshing-1.jpg" data-project-id="datamoshing2" alt="datamoshing 2" class="projects-preview">
+        </div>
+        <div class="project-preview-wrapper">
+            <img src="images/wear-me-3.png" data-project-id="projet10" alt="projet 10" class="projects-preview">
+        </div>
+        <div class="project-preview-wrapper">
+            <img src="images/falaise-1.png" data-project-id="projet11" alt="projet 11" class="projects-preview">
+        </div>
+        <div class="project-preview-wrapper">
+            <img src="images/fragilité-1.png" data-project-id="projet12" alt="projet 12" class="projects-preview">
+        </div>
+        <div class="project-preview-wrapper">
+            <img src="images/Screenshot 2026-02-03 at 22.49.47.png" data-project-id="projet14" alt="projet 14" class="projects-preview">
+        </div>
     </div>
-    <div class="project-preview-wrapper">
-        <img src="images/war-on-screen-1.png" data-project-id="waronscreen" alt="war on screen" class="projects-preview">
-    </div>
-    <div class="project-preview-wrapper">
-        <img src="images/rds-2.1.png" data-project-id="rapportdestage" alt="rapport de stage" class="projects-preview">
-    </div>
-    <div class="project-preview-wrapper">
-        <img src="images/voix-de-stras-1.png" data-project-id="voixdestras" alt="voix de stras" class="projects-preview">
-    </div>
-    <div class="project-preview-wrapper">
-        <img src="images/c-mon-cafe-5.png" data-project-id="cmoncafe" alt="c mon café" class="projects-preview">
-    </div>
-    <div class="project-preview-wrapper">
-        <img src="images/lampe-1.png" data-project-id="lampe" alt="lampe" class="projects-preview">
-    </div>
-    <div class="project-preview-wrapper">
-        <img src="images/ornement-1.jpg" data-project-id="ornement" alt="ornement" class="projects-preview">
-    </div>
-    <div class="project-preview-wrapper">
-        <img src="images/datamoshing-2.jpg" data-project-id="datamoshing" alt="datamoshing" class="projects-preview">
-    </div>
-    <div class="project-preview-wrapper">
-        <img src="images/datamoshing-1.jpg" data-project-id="datamoshing2" alt="datamoshing 2" class="projects-preview">
-    </div>
-    <div class="project-preview-wrapper">
-        <img src="images/wear-me-3.png" data-project-id="projet10" alt="projet 10" class="projects-preview">
-    </div>
-    <div class="project-preview-wrapper">
-        <img src="images/falaise-1.png" data-project-id="projet11" alt="projet 11" class="projects-preview">
-    </div>
-    <div class="project-preview-wrapper">
-        <img src="images/fragilité-1.png" data-project-id="projet12" alt="projet 12" class="projects-preview">
-    </div>
-    <div class="project-preview-wrapper">
-        <img src="images/Screenshot 2026-02-03 at 22.49.47.png" data-project-id="projet14" alt="projet 14" class="projects-preview">
-    </div>
-</div>
 
     <div id="lightbox" class="lightbox">
         <span class="lightbox-close">close</span>
@@ -168,9 +148,9 @@
 
     <div id="project-info" class="project-info">
         <div class="info-text">
-            <p id="info-title"></p>
-            <p id="info-mediums"></p>
-            <p id="info-year"></p>
+            <div><p id="info-title"></p></div>
+            <div><p id="info-mediums"></p></div>
+            <div><p id="info-year"></p></div>
             <br>
             <p id="info-description"></p>
             <p id="info-intention"></p>
@@ -182,205 +162,9 @@
     <div id="info-images" class="info-images"></div>
 
     <script src="script.js"></script>
+    <script src="intro.js"></script>
     <script src="windows-system.js"></script>
     <script src="messy-text.js"></script>
-
-
-    <!-- ════════════════════════════════════
-         SCRIPT INTRO — DRAG & DROP CLÉ
-         ════════════════════════════════════ -->
-    <script>
-    (function () {
-
-        var keyEl      = document.getElementById('key-img');
-        var lockEl     = document.getElementById('lock');
-        var lockZone   = document.getElementById('lock-zone');
-        var keyTurning = document.getElementById('key-turning');
-        var hintEl     = document.getElementById('hint');
-        var introScene = document.getElementById('intro-scene');
-        var loadScreen = document.getElementById('loading-screen');
-        var doorLeft   = document.getElementById('door-left');
-        var doorRight  = document.getElementById('door-right');
-
-        var isDragging = false;
-        var startMouseX = 0, startMouseY = 0;
-        var startElemX  = 0, startElemY  = 0;
-        var keyUsed = false;
-
-        /* Position de départ de la clé (coin bas-droite) */
-        keyEl.style.position = 'fixed';
-        keyEl.style.right    = '80px';
-        keyEl.style.bottom   = '80px';
-        keyEl.style.left     = 'auto';
-        keyEl.style.top      = 'auto';
-
-        /* ── Empêche le drag natif des images ── */
-        keyEl.querySelector('img').addEventListener('dragstart', function(e){ e.preventDefault(); });
-
-        /* ── MOUSE ── */
-        keyEl.addEventListener('mousedown', function (e) {
-            if (keyUsed) return;
-            e.preventDefault();
-
-            var rect = keyEl.getBoundingClientRect();
-            startMouseX = e.clientX;
-            startMouseY = e.clientY;
-            startElemX  = rect.left;
-            startElemY  = rect.top;
-
-            /* Passe en positionnement absolu depuis la position actuelle */
-            keyEl.style.left   = rect.left + 'px';
-            keyEl.style.top    = rect.top  + 'px';
-            keyEl.style.right  = 'auto';
-            keyEl.style.bottom = 'auto';
-
-            isDragging = true;
-            keyEl.classList.add('dragging');
-
-            document.addEventListener('mousemove', onMouseMove);
-            document.addEventListener('mouseup',   onMouseUp);
-        });
-
-        function onMouseMove(e) {
-            if (!isDragging) return;
-            var dx = e.clientX - startMouseX;
-            var dy = e.clientY - startMouseY;
-            keyEl.style.left = (startElemX + dx) + 'px';
-            keyEl.style.top  = (startElemY + dy) + 'px';
-            checkProximity(e.clientX, e.clientY);
-        }
-
-        function onMouseUp(e) {
-            if (!isDragging) return;
-            isDragging = false;
-            keyEl.classList.remove('dragging');
-            lockZone.classList.remove('active');
-            document.removeEventListener('mousemove', onMouseMove);
-            document.removeEventListener('mouseup',   onMouseUp);
-            checkDrop(e.clientX, e.clientY);
-        }
-
-        /* ── TOUCH ── */
-        keyEl.addEventListener('touchstart', function (e) {
-            if (keyUsed) return;
-            e.preventDefault();
-
-            var touch = e.touches[0];
-            var rect  = keyEl.getBoundingClientRect();
-            startMouseX = touch.clientX;
-            startMouseY = touch.clientY;
-            startElemX  = rect.left;
-            startElemY  = rect.top;
-
-            keyEl.style.left   = rect.left + 'px';
-            keyEl.style.top    = rect.top  + 'px';
-            keyEl.style.right  = 'auto';
-            keyEl.style.bottom = 'auto';
-
-            isDragging = true;
-            keyEl.classList.add('dragging');
-
-            document.addEventListener('touchmove', onTouchMove, { passive: false });
-            document.addEventListener('touchend',  onTouchEnd);
-        }, { passive: false });
-
-        function onTouchMove(e) {
-            if (!isDragging) return;
-            e.preventDefault();
-            var touch = e.touches[0];
-            var dx = touch.clientX - startMouseX;
-            var dy = touch.clientY - startMouseY;
-            keyEl.style.left = (startElemX + dx) + 'px';
-            keyEl.style.top  = (startElemY + dy) + 'px';
-            checkProximity(touch.clientX, touch.clientY);
-        }
-
-        function onTouchEnd(e) {
-            if (!isDragging) return;
-            isDragging = false;
-            keyEl.classList.remove('dragging');
-            lockZone.classList.remove('active');
-            document.removeEventListener('touchmove', onTouchMove);
-            document.removeEventListener('touchend',  onTouchEnd);
-            var touch = e.changedTouches[0];
-            checkDrop(touch.clientX, touch.clientY);
-        }
-
-        /* ── Vérifie la proximité avec la serrure ── */
-        function checkProximity(cx, cy) {
-            var lockRect = lockEl.getBoundingClientRect();
-            var lockCX   = lockRect.left + lockRect.width  / 2;
-            var lockCY   = lockRect.top  + lockRect.height / 2;
-            var dist     = Math.hypot(cx - lockCX, cy - lockCY);
-            if (dist < 110) {
-                lockZone.classList.add('active');
-            } else {
-                lockZone.classList.remove('active');
-            }
-        }
-
-        /* ── Vérifie si le drop est sur la serrure ── */
-        function checkDrop(cx, cy) {
-            var lockRect = lockEl.getBoundingClientRect();
-            var lockCX   = lockRect.left + lockRect.width  / 2;
-            var lockCY   = lockRect.top  + lockRect.height / 2;
-            var dist     = Math.hypot(cx - lockCX, cy - lockCY);
-
-            if (dist < 90) {
-                triggerUnlock();
-            } else {
-                /* Retour coin bas-droite */
-                keyEl.style.left   = 'auto';
-                keyEl.style.top    = 'auto';
-                keyEl.style.right  = '80px';
-                keyEl.style.bottom = '80px';
-            }
-        }
-
-        /* ── Séquence déverrouillage ── */
-        function triggerUnlock() {
-            if (keyUsed) return;
-            keyUsed = true;
-
-            /* Cache la clé draggable et le hint */
-            keyEl.style.opacity      = '0';
-            keyEl.style.pointerEvents = 'none';
-            hintEl.style.opacity     = '0';
-
-            /* Positionne la clé tournante sur la serrure */
-            keyTurning.style.opacity = '1';
-
-            /* Après rotation : ouvre la porte */
-            setTimeout(function () {
-                lockEl.classList.add('used');
-                keyTurning.style.opacity = '0';
-
-                setTimeout(function () {
-                    doorLeft.classList.add('open');
-                    doorRight.classList.add('open');
-
-                    /* Écran de chargement */
-                    setTimeout(function () {
-                        loadScreen.classList.add('visible');
-
-                        /* Révèle le site */
-                        setTimeout(function () {
-                            loadScreen.classList.remove('visible');
-
-                            setTimeout(function () {
-                                document.body.classList.add('intro-done');
-                                introScene.style.display = 'none';
-                            }, 600);
-
-                        }, 2200);
-
-                    }, 900);
-                }, 300);
-            }, 1500);
-        }
-
-    })();
-    </script>
 
 </body>
 </html>

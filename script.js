@@ -34,7 +34,7 @@ const projectsData = {
         description: "L'équipe WOS vous invite à réfléchir à la nouvelle identité visuelle du festival à travers la création de l'affiche de la 14e édition. Elle sera exposée lors de l'édition 2026.",
         intention: "L'affiche interroge le pouvoir de l'image comme acte de mémoire, capable d'immortaliser des vies menacées de disparition. La joie et l'innocence des enfants, figées dans la lumière de la projection, subsistent face à un effacement progressif suggéré par les particules.",
         softwares: "[illustrator] [photoshop]",
-        images: ["images/rds-1.2.png", "images/war-on-screen-2.png"]
+        images: ["images/rds-3.png", "images/rds-1.png","images/rds-2.png","images/rds-3.png","images/rds-4.png","images/rds-5.png"]
     },
     voixdestras: {
         title: "Voix de Strasbourg",
