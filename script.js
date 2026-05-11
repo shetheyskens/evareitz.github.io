@@ -200,6 +200,12 @@ function showInfo(projectId) {
 
 //■■■ PLACEMENT ET EVENTS ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 window.addEventListener('load', () => {
+    function adjustBoard() {
+        const filterHeight = document.querySelector('.filter-container').offsetHeight;
+        document.querySelector('.board').style.top = (filterHeight + 90) + 'px';
+    }
+    adjustBoard();
+    window.addEventListener('resize', adjustBoard);
     const infoDiv = document.getElementById('project-info');
     const wrappers = document.querySelectorAll('.project-preview-wrapper');
 
